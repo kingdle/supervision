@@ -15,7 +15,7 @@ class Post extends Model
     protected $casts = [
         'extra' => 'json',
     ];
-    protected $fillable = ['PROJECT_ID','PLAN_ID','WORK_STATES','DUTY_USER','DUTY_DEPT','UNDER_TAKE_USER','PLAN_BEGIN_DATE','PLAN_END_DATE','PROJECT_NAME','PLAN_NAME','BUSINESS_MATTER_NAME','PRO_PROGRESS','PRO_PLAN','created_at','updated_at','deleted_at'];
+    protected $fillable = ['ID','PROJECT_ID','PLAN_ID','WORK_STATES','DUTY_USER','DUTY_DEPT','UNDER_TAKE_USER','PLAN_BEGIN_DATE','PLAN_END_DATE','PROJECT_NAME','PLAN_NAME','BUSINESS_MATTER_NAME','PRO_PROGRESS','PRO_PLAN','created_at','updated_at','deleted_at'];
 
 
     public function pro_users()
