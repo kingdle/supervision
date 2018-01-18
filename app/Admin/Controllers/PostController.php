@@ -44,14 +44,14 @@ class PostController extends Controller
      *
      * @return Content
      */
-    public function edit($ID)
+    public function edit($id)
     {
-        return Admin::content(function (Content $content) use ($ID) {
+        return Admin::content(function (Content $content) use ($id) {
 
             $content->header('重点工作');
             $content->description('编辑');
 
-            $content->body($this->form()->edit($ID));
+            $content->body($this->form()->edit($id));
         });
     }
 
@@ -153,11 +153,18 @@ class PostController extends Controller
                 });
             });
             $grid->actions(function ($actions) {
-                // append一个操作
-//                $actions->disableDelete();
+
+                // 当前行的数据数组
+                $actions->row;
+
+                // 获取当前行主键值
+                $actions->getKey();
+
+                //                $actions->disableDelete();
 //                $actions->disableEdit();
 //                $actions->append("<a href='/admin/posts/{$actions->getKey()}/edit'><i class='fa fa-eye'></i></a>");
             });
+
         });
     }
 
@@ -172,12 +179,14 @@ class PostController extends Controller
         return Admin::form(Post::class, function (Form $form) {
 
             $form->display('id', 'ID');
-
+            $form->display('PROJECT_NAME', '一级标题');
+            $form->display('PLAN_NAME', '二级标题');
+            $form->display('BUSINESS_MATTER_NAME', '三级标题');
             $states = [
                 'on' => ['value' => 2, 'text' => '是', 'color' => 'success'],
                 'off' => ['value' => 0, 'text' => '否', 'color' => 'danger'],
             ];
-            $form->switch('WORK_STATES', '是否办结')->states($states);
+//            $form->switch('WORK_STATES', '是否办结')->states($states);
             $form->icon('icon', '进度图标');
             $form->multipleImage('images', '图片')->removable();
 //            $form->map($latitude, $longitude, $label);
@@ -196,7 +205,7 @@ class PostController extends Controller
     {
         $q = $request->get('q');
 
-        return User::where('name', 'like', "%$q%")->paginate(null, ['id', 'name as text']);
+        return User::where('name', 'like', "%$q%")->paginate(null, ['USER_ID', 'name as text']);
     }
 
     public function release(Request $request)

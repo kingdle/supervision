@@ -259,16 +259,32 @@
                                 <div class="feed-element">
                                     @if($article->images)
                                         <a href="/admin/auth/screen/{{ $article->id }}" class="pull-left">
-                                            <img alt="image" class="img-circle" src="/uploads/{{ $article->images[0] }}">
+                                            <img alt="image" class="img-circle"
+                                                 src="/uploads/{{ $article->images[0] }}">
                                         </a>
                                     @endif
                                     <div class="media-body ">
                                         <small class="pull-right">{{ $article->updated_at->diffForHumans()  }}</small>
+                                        <a href="/admin/posts/{{ $article->id }}/edit">
                                         <strong>
                                             {{ $article->PROJECT_NAME }}
                                             -{{ $article->PLAN_NAME }}
                                             -{{ $article->BUSINESS_MATTER_NAME }}
                                         </strong>
+                                        </a>
+                                        @if($article->NODE_LEVEL == '1')
+                                            <i class='fa fa-star' style='color:#ff8913'></i>
+                                        @endif
+                                        @if($article->NODE_LEVEL == '2')
+                                            <i class='fa fa-star' style='color:#ff8913'></i>
+                                            <i class='fa fa-star' style='color:#ff8913'></i>
+                                        @endif
+                                        @if($article->NODE_LEVEL == '3')
+                                            <i class='fa fa-star' style='color:#ff8913'></i>
+                                            <i class='fa fa-star' style='color:#ff8913'></i>
+                                            <i class='fa fa-star' style='color:#ff8913'></i>
+                                        @endif
+                                        <small class="text-muted">任务号：</small>{{ $article->ID }}
                                         <br>
                                         <small class="text-muted">分管领导：</small>
                                         {{ $article->BRANCH_LEADER }}
