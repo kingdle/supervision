@@ -21,7 +21,17 @@
         min-height: 30px;
     }
 </style>
-<div class="row animated fadeInRight">
+<script>
+    $(document).ready(function () {
+        setInterval("startRequest()",7200000);
+//setInterval这个函数会根据后面定义的1000既每隔1秒执行一次前面那个函数
+    });
+    function startRequest()
+    {
+        location.reload();
+    }
+</script>
+<div class="row animated fadeInRight" id="topdata">
     <div class="col-md-12">
         <div class="ibox float-e-margins">
             <div class="ibox-content">

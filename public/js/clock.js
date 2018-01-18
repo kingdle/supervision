@@ -28,3 +28,6 @@ function add_zero(temp)
 }
 
 setInterval("getCurDate()",100);
+
+
+
