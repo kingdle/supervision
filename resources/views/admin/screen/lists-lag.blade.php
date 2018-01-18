@@ -284,7 +284,7 @@
                                             <i class='fa fa-star' style='color:#ff8913'></i>
                                             <i class='fa fa-star' style='color:#ff8913'></i>
                                         @endif
-                                        <small class="text-muted">任务号：</small>{{ $article->ID }}
+                                        <small class="text-muted">任务号：</small>{{ $article->id }}
                                         <br>
                                         <small class="text-muted">分管领导：</small>
                                         {{ $article->BRANCH_LEADER }}
