@@ -242,6 +242,7 @@
     }
 
 </style>
+
 <div class="row animated fadeInRight">
     <div class="col-md-12">
         <div class="ibox float-e-margins">
@@ -250,12 +251,12 @@
                 <div class="ibox-tools">
                     {{ $lags->count() }} 项
                 </div>
+
             </div>
             <div class="ibox-content">
                 <div id="Roll" style="overflow:hidden;height: 600px;">
                     <div id="Roll1" class="feed-activity-list">
                         @foreach($lags as $article)
-                            @if($article->WORK_STATES !=2)
                                 <div class="feed-element">
                                     @if($article->images)
                                         <a href="/admin/auth/screen/{{ $article->id }}" class="pull-left">
@@ -266,11 +267,11 @@
                                     <div class="media-body ">
                                         <small class="pull-right">{{ $article->updated_at->diffForHumans()  }}</small>
                                         <a href="/admin/posts/{{ $article->id }}/edit">
-                                        <strong>
-                                            {{ $article->PROJECT_NAME }}
-                                            -{{ $article->PLAN_NAME }}
-                                            -{{ $article->BUSINESS_MATTER_NAME }}
-                                        </strong>
+                                            <strong>
+                                                {{ $article->PROJECT_NAME }}
+                                                -{{ $article->PLAN_NAME }}
+                                                -{{ $article->BUSINESS_MATTER_NAME }}
+                                            </strong>
                                         </a>
                                         @if($article->NODE_LEVEL == '1')
                                             <i class='fa fa-star' style='color:#ff8913'></i>
@@ -286,14 +287,32 @@
                                         @endif
                                         <small class="text-muted">任务号：</small>{{ $article->id }}
                                         <br>
+                                        <span style="display:none">
+                                            @foreach($users as $user)
+                                                @if($user->USER_ID == $article->BRANCH_LEADER)
+                                                    {{ $BRANCH_LEADER=$user->USER_NAME }}
+                                                @endif
+                                                @if($user->USER_ID == $article->DUTY_USER)
+                                                    {{ $DUTY_USER=$user->USER_NAME }}
+                                                @endif
+                                                @if($user->USER_ID == $article->UNDER_TAKE_USER)
+                                                    {{ $UNDER_TAKE_USER=$user->USER_NAME }}
+                                                @endif
+                                            @endforeach
+                                        </span>
+
                                         <small class="text-muted">分管领导：</small>
-                                        {{ $article->BRANCH_LEADER }}
+                                        <strong>{{ $BRANCH_LEADER }}</strong>
                                         <small class="text-muted">责任人：</small>
-                                        <strong>{{ $article->DUTY_USER }}</strong>
+                                        <strong>{{ $DUTY_USER }}</strong>
                                         <small class="text-muted">承办人：</small>
-                                        {{ $article->UNDER_TAKE_USER }}
+                                        <strong>{{ $UNDER_TAKE_USER }}</strong>
                                         <small class="text-muted">承办部门：</small>
-                                        {{ $article->DUTY_DEPT }}
+                                        @foreach($depts as $dept)
+                                            @if($dept->DEPT_ID == $article->DUTY_DEPT)
+                                                {{ $dept->DEPT_NAME }}
+                                            @endif
+                                        @endforeach
                                         <small class="text-muted">开始日期：</small>
                                         {{ $article->PLAN_BEGIN_DATE }}
                                         <small class="text-muted">计划完成日期：</small>
@@ -312,7 +331,6 @@
                                         @endif
                                     </div>
                                 </div>
-                            @endif
                         @endforeach
                     </div>
                     <div id="Roll2" class="feed-activity-list">
