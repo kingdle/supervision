@@ -252,11 +252,13 @@
                     {{ $lags->count() }} 项
                 </div>
 
+
             </div>
             <div class="ibox-content">
                 <div id="Roll" style="overflow:hidden;height: 600px;">
                     <div id="Roll1" class="feed-activity-list">
                         @foreach($lags as $article)
+
                                 <div class="feed-element">
                                     @if($article->images)
                                         <a href="/admin/auth/screen/{{ $article->id }}" class="pull-left">
@@ -287,32 +289,14 @@
                                         @endif
                                         <small class="text-muted">任务号：</small>{{ $article->id }}
                                         <br>
-                                        <span style="display:none">
-                                            @foreach($users as $user)
-                                                @if($user->USER_ID == $article->BRANCH_LEADER)
-                                                    {{ $BRANCH_LEADER=$user->USER_NAME }}
-                                                @endif
-                                                @if($user->USER_ID == $article->DUTY_USER)
-                                                    {{ $DUTY_USER=$user->USER_NAME }}
-                                                @endif
-                                                @if($user->USER_ID == $article->UNDER_TAKE_USER)
-                                                    {{ $UNDER_TAKE_USER=$user->USER_NAME }}
-                                                @endif
-                                            @endforeach
-                                        </span>
-
                                         <small class="text-muted">分管领导：</small>
-                                        <strong>{{ $BRANCH_LEADER }}</strong>
+                                        <strong>{{ $users[$article->BRANCH_LEADER] }}</strong>
                                         <small class="text-muted">责任人：</small>
-                                        <strong>{{ $DUTY_USER }}</strong>
+                                        <strong>{{ $users[$article->DUTY_USER] }}</strong>
                                         <small class="text-muted">承办人：</small>
-                                        <strong>{{ $UNDER_TAKE_USER }}</strong>
+                                        <strong>{{ $users[$article->UNDER_TAKE_USER] }}</strong>
                                         <small class="text-muted">承办部门：</small>
-                                        @foreach($depts as $dept)
-                                            @if($dept->DEPT_ID == $article->DUTY_DEPT)
-                                                {{ $dept->DEPT_NAME }}
-                                            @endif
-                                        @endforeach
+                                        {{ $depts[$article->DUTY_DEPT] }}
                                         <small class="text-muted">开始日期：</small>
                                         {{ $article->PLAN_BEGIN_DATE }}
                                         <small class="text-muted">计划完成日期：</small>
