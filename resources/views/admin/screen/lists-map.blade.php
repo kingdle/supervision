@@ -4,7 +4,7 @@
     }
     #container{
         min-width:600px;
-        min-height:550px;
+        min-height:600px;
     }
 </style>
 <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.3&key=80701f48c0cc37c4d279b256aba5c407"></script>
