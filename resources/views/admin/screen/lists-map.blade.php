@@ -4,10 +4,10 @@
     }
     #container{
         min-width:600px;
-        min-height:767px;
+        min-height:550px;
     }
 </style>
-<script charset="utf-8" src="http://map.qq.com/api/js?v=2.exp&key=CQTBZ-G7G6S-PK2OI-6RTUX-7WVRK-K6BOB"></script>
+<script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.3&key=80701f48c0cc37c4d279b256aba5c407"></script>
 <div class="row animated fadeInRight">
     <div class="col-md-12">
         <div class="ibox float-e-margins">
@@ -19,18 +19,16 @@
     </div>
 </div>
 <script>
-    window.onload = function () {
-//直接加载地图
-        //初始化地图函数  自定义函数名init
-        function init() {
-            //定义map变量 调用 qq.maps.Map() 构造函数   获取地图显示容器
-            var map = new qq.maps.Map(document.getElementById("container"), {
-                center: new qq.maps.LatLng(39.90657, 120.09155),      // 地图的中心地理坐标。
-                zoom: 8                                                 // 地图的中心地理坐标。
-            });
-        }
 
-        //调用初始化函数地图
-        init();
-    }
+        var map = new AMap.Map('container',{
+            zoom: 12,
+            center: [120.101765,35.89719]//new AMap.LngLat(116.39,39.9)
+        });
+        AMap.plugin(['AMap.ToolBar','AMap.Scale','AMap.OverView'],
+            function(){
+                map.addControl(new AMap.ToolBar());
+
+                map.addControl(new AMap.MapType({isOpen:true}));
+            });
+
 </script>
