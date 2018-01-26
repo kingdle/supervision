@@ -13,7 +13,7 @@
                 </div>
             </div>
             <div class="ibox-content">
-                <div style="overflow:hidden;height: 400px;">
+                <div style="overflow:hidden;height: 500px;">
                     <div id="scrollDiv" class="feed-activity-list">
                         <ul style="padding-left: 0px">
                             @foreach($slows as $article)
