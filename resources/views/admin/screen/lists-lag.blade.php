@@ -255,7 +255,7 @@
 
             </div>
             <div class="ibox-content">
-                <div id="Roll" style="overflow:hidden;height: 570px;">
+                <div id="Roll" style="overflow:hidden;height: 550px;">
                     <div id="Roll1" class="feed-activity-list">
                         @foreach($lags as $article)
 
