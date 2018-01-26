@@ -1,3 +1,12 @@
+<style type="text/css">
+    .btn{
+        width:142px;
+    }
+    #container{
+        min-width:600px;
+        min-height:767px;
+    }
+</style>
 <script charset="utf-8" src="http://map.qq.com/api/js?v=2.exp&key=CQTBZ-G7G6S-PK2OI-6RTUX-7WVRK-K6BOB"></script>
 <div class="row animated fadeInRight">
     <div class="col-md-12">
