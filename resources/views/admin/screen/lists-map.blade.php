@@ -4,7 +4,15 @@
     }
     #container{
         min-width:600px;
-        min-height:600px;
+        min-height:590px;
+    }
+    .content {
+        min-height: 250px;
+         padding: 0px;
+        margin-right: auto;
+        margin-left: auto;
+        padding-left: 15px;
+        padding-right: 15px;
     }
 </style>
 <script type="text/javascript" src="http://webapi.amap.com/maps?v=1.4.3&key=80701f48c0cc37c4d279b256aba5c407"></script>
