@@ -39,9 +39,9 @@ class ScreenController extends Controller {
             });
             $content->row(function (Row $row) {
                 $lists = Post::latest('release_at');//任务总数
-                $finish = Post::latest('release_at')->whereRaw('WORK_STATES != 2');//办理完成
-                $lags = Post::latest('release_at')->whereRaw('WORK_STATES != 2 and WORK_STATES != 0 and PLAN_END_DATE < now()')->paginate(200000);//进展滞后
-                $slows = Post::latest('release_at')->whereRaw('WORK_STATES != 2 and WORK_STATES != 0 and progress=2')->paginate(200000);//进展缓慢
+                $finish = Post::latest('release_at')->whereRaw('WORK_STATES != 2 and NODE_LEVEL != 3');//办理完成
+                $lags = Post::latest('release_at')->whereRaw('WORK_STATES != 2 and WORK_STATES != 0 and NODE_LEVEL != 3 and PLAN_END_DATE < now()')->paginate(200000);//进展滞后
+                $slows = Post::latest('release_at')->whereRaw('WORK_STATES != 2 and WORK_STATES != 0 and NODE_LEVEL != 3 and progress=2')->paginate(200000);//进展缓慢
                 $depts = Dept::pluck('DEPT_NAME','DEPT_ID' );
                 $users = User::pluck('USER_NAME','USER_ID');
                 $row->column(12, view('admin.screen.lists', compact('lists','lags','slows','finish')));
