@@ -10,7 +10,7 @@ use Naux\Mail\SendCloudTemplate;
 
 class Dept extends Authenticatable
 {
-    protected $table = 'pro_department';
+    protected $table = 'department';
     /**
      * The attributes that are mass assignable.
      *
