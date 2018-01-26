@@ -11,11 +11,7 @@
 <div class="row animated fadeInRight">
     <div class="col-md-12">
         <div class="ibox float-e-margins">
-            <div class="ibox-title">
-                <h5><i class="fa fa-flag" style="color: #c87a29;margin-right: 10px"></i>地图展示</h5>
-                <div class="ibox-tools">
-                </div>
-            </div>
+
             <div class="ibox-content">
                 <div id="container"></div>
             </div>
@@ -29,7 +25,7 @@
         function init() {
             //定义map变量 调用 qq.maps.Map() 构造函数   获取地图显示容器
             var map = new qq.maps.Map(document.getElementById("container"), {
-                center: new qq.maps.LatLng(39.916527, 116.397128),      // 地图的中心地理坐标。
+                center: new qq.maps.LatLng(39.90657, 120.09155),      // 地图的中心地理坐标。
                 zoom: 8                                                 // 地图的中心地理坐标。
             });
         }
