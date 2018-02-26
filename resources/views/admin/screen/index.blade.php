@@ -191,6 +191,13 @@
             color: rgb(255, 255, 255);
             font-weight: normal;
         }
+        .feed-element img {
+            width: 38px;
+            height: 38px;
+        }
+        .img-circle {
+            border-radius: 50%;
+        }
     </style>
     <div class="Tbox">
         <div class="row">
@@ -237,10 +244,10 @@
                 <ul class="article-list">
                     @foreach($posts as $article)
                         @if($article->released !=2)
-                        <li>
+                        <li class="feed-element">
                             @if($article->images)
                             <a href="/admin/auth/screen/{{ $article->id }}" class="pic visible-lg">
-                                <img src="/uploads/{{ $article->images[0] }}" alt="" width="200">
+                                <img src="/uploads/{{ $article->images[0] }}" class="img-circle" alt="" width="200">
                             </a>
                             @endif
                             <div class="cont">

@@ -45,8 +45,8 @@ class ScreenController extends Controller {
                 $depts = Dept::pluck('DEPT_NAME','DEPT_ID' );
                 $users = User::pluck('USER_NAME','USER_ID');
                 $row->column(12, view('admin.screen.lists', compact('lists','lags','slows','finish')));
-                $row->column(7, view('admin.screen.lists-map'));
-                $row->column(5, view('admin.screen.lists-lag', compact('lags','users','depts','tests')));
+                $row->column(6, view('admin.screen.lists-map'));
+                $row->column(6, view('admin.screen.lists-lag', compact('lags','users','depts','tests')));
 //                $row->column(5, view('admin.screen.lists-slow', compact('slows','users','depts')));
             });
 

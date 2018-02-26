@@ -243,15 +243,17 @@
 
 </style>
 
-<div class="row animated fadeInRight">
+<div class="row animated fadeInRight" id="lag-list">
     <div class="col-md-12">
         <div class="ibox float-e-margins">
             <div class="ibox-title">
                 <h5><i class="fa fa-flag" style="color: #b33309; margin-right: 10px"></i>进展滞后</h5>
                 <div class="ibox-tools">
                     {{ $lags->count() }} 项
+                    <a class="close-link">
+                        <i  id="close-link" class="fa fa-times"></i>
+                    </a>
                 </div>
-
 
             </div>
             <div class="ibox-content">
@@ -268,7 +270,7 @@
                                     @endif
                                     <div class="media-body ">
                                         <small class="pull-right">{{ $article->updated_at->diffForHumans()  }}</small>
-                                        <a href="/admin/posts/{{ $article->id }}/edit">
+                                        <a href="/admin/auth/screen/{{ $article->id }}">
                                             <strong>
                                                 {{ $article->PROJECT_NAME }}
                                                 -{{ $article->PLAN_NAME }}
@@ -341,4 +343,8 @@
     Roll.onmouseout = function () {
         MyMar = setInterval(Marquee, speed)
     }
+
+    $("#close-link").click(function(){
+        $("lag-list").hide();
+    });
 </script>
