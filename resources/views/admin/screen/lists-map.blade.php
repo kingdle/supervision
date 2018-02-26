@@ -192,7 +192,7 @@
         var cc ="<div class='vertical-timeline-content'>"+
         "<h2>"+mar.name +"</h2>"+
         "<p><span>存在问题：</span>40#楼安装工程完成，砌体工程完成。41#楼砌体及安装工程完成。48、49#楼砌体及二次结构完成。因服务中心方案调整，施工图重新出图，服务中心未能按原计划完成。</p>"+
-        "<a href=" + mar.url + "target='_blank'"+" class='btn-info btn-sm'>更多信息</a>"+
+        "<a href='" + mar.url + "' target='_self' class='btn-info btn-sm'>查看详情</a></div>"+
             "</div>"
         marker.content = cc;
         marker.on('click', markerClick);
