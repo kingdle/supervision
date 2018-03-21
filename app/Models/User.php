@@ -12,7 +12,8 @@ class User extends Authenticatable
 {
     protected $table = 'pro_user';
     /**
-     * The attributes that are mass assignable.
+     * The attributes that are mass a
+     * ssignable.
      *
      * @var array
      */
@@ -30,7 +31,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $hidden = [
-
+        'PASSWORD'
     ];
     public function sendPasswordResetNotification($token)
     {
