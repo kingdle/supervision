@@ -2,17 +2,14 @@
 
 namespace App\Models;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
-use Laravel\Passport\HasApiTokens;
-use Mail;
-use Naux\Mail\SendCloudTemplate;
+use Illuminate\Database\Eloquent\Model;
 
-class Dept extends Authenticatable
+
+class Dept extends Model
 {
     protected $table = 'pro_department';
     /**
-     * The attributes that are mass assignable.
+     * 部门
      *
      * @var array
      */
@@ -32,20 +29,5 @@ class Dept extends Authenticatable
     protected $hidden = [
 
     ];
-    public function sendPasswordResetNotification($token)
-    {
-        $data = [
-            'url' => url('password/reset', $token)
-        ];
-        $template = new SendCloudTemplate('maxdata_password_reset', $data);
 
-        Mail::raw($template, function ($message){
-            $message->from('nkings@163.com', '青岛西海岸');
-            $message->to($this->email);
-        });
-    }
-    public function isMember()
-    {
-        return false;
-    }
 }

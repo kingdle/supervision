@@ -50,7 +50,14 @@ Route::get('workChart',function (){
     ];
     return json_encode($workChart);
 });
-Route::get('workList',function ($user){
+
+Route::group(['prefix'=>'v1'],function (){
+    Route::resource('post','PostController');
 
 });
+
+
+
+
+
 

@@ -25,6 +25,10 @@ class User extends Authenticatable
     {
         $this->hasMany(Post::class, 'UNDER_TAKE_USER');
     }
+    public function pro_task_flow_runs()
+    {
+        $this->hasMany(Run::class, 'DUTY_USER');
+    }
     /**
      * The attributes that should be hidden for arrays.
      *
