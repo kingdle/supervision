@@ -19,10 +19,11 @@ class OversController extends BaseController
         return $this->response->paginator($overs,new OverTransformer());
     }
     public function show($main_id){
-        $Over =Over::all()->where('MAIN_ID', $main_id);
+        $Over =Over::where('MAIN_ID', $main_id)->paginate(10);
         if($Over->count() == 0){
             return $this->response->errorNotFound('办结信息不存在');
         }
-        return $this->item($Over,new OverTransformer());
+        return $this->response->paginator($Over,new OverTransformer());
+
     }
 }

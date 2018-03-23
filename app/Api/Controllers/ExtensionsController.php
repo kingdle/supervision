@@ -19,10 +19,11 @@ class ExtensionsController extends BaseController
         return $this->response->paginator($extensions,new ExtensionTransformer());
     }
     public function show($main_id){
-        $Extension =Extension::all()->where('MAIN_ID', $main_id);
+        $Extension =Extension::where('MAIN_ID', $main_id)->paginate(10);
         if($Extension->count() == 0){
             return $this->response->errorNotFound('延期信息不存在');
         }
-        return $this->item($Extension,new ExtensionTransformer());
+        return $this->response->paginator($Extension,new ExtensionTransformer());
+
     }
 }
