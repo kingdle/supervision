@@ -17,7 +17,7 @@ class OversController extends BaseController
     }
     public function show($main_id){
         $Over =Over::all()->where('MAIN_ID', $main_id);
-        if(! $Over){
+        if($Over->count() == 0){
             return $this->response->errorNotFound('办结信息不存在');
         }
         return $this->item($Over,new OverTransformer());

@@ -17,7 +17,7 @@ class UrgesController extends BaseController
     }
     public function show($main_id){
         $Urge =Urge::all()->where('MAIN_ID', $main_id);
-        if(! $Urge){
+        if($Urge->count() == 0){
             return $this->response->errorNotFound('提示信息不存在');
         }
         return $this->item($Urge,new UrgeTransformer());

@@ -17,7 +17,7 @@ class EscalationsController extends BaseController
     }
     public function show($main_id){
         $Escalation =Escalation::all()->where('MAIN_ID', $main_id);
-        if(! $Escalation){
+        if($Escalation->count() == 0){
             return $this->response->errorNotFound('进展不存在');
         }
         return $this->item($Escalation,new EscalationTransformer());

@@ -17,7 +17,7 @@ class ExtensionsController extends BaseController
     }
     public function show($main_id){
         $Extension =Extension::all()->where('MAIN_ID', $main_id);
-        if(! $Extension){
+        if($Extension->count() == 0){
             return $this->response->errorNotFound('延期信息不存在');
         }
         return $this->item($Extension,new ExtensionTransformer());

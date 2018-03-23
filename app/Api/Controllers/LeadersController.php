@@ -17,9 +17,10 @@ class LeadersController extends BaseController
     }
     public function show($main_id){
         $Leader =Leader::all()->where('MAIN_ID', $main_id);
-        if(! $Leader){
+        if($Leader->count() == 0){
             return $this->response->errorNotFound('进展不存在');
         }
         return $this->item($Leader,new LeaderTransformer());
+//        return $Leader;
     }
 }

@@ -16,7 +16,7 @@ class FollowersController extends BaseController
         return $this->collection($followers,new FollowerTransformer());
     }
     public function show($id){
-        $follower =Flow::find($id);
+        $follower =Follower::find($id);
         if(! $follower){
             return $this->response->errorNotFound('关注信息不存在');
         }

@@ -17,7 +17,7 @@ class MessagesController extends BaseController
     }
     public function show($main_id){
         $Message =Message::all()->where('MAIN_ID', $main_id);
-        if(! $Message){
+        if($Message->count() == 0){
             return $this->response->errorNotFound('消息不存在');
         }
         return $this->item($Message,new MessageTransformer());
