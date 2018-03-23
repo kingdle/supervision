@@ -13,11 +13,14 @@ use Illuminate\Support\Facades\DB;
 class UsersController extends BaseController
 {
     public function index(){
-        $users= User::all();
-        return $this->collection($users,new UserTransformer());
+        $users= User::paginate(10);
+        if($users->count() == 0){
+            return $this->response->errorNotFound('页面不存在');
+        }
+        return $this->response->paginator($users,new UserTransformer());
     }
     public function show($user_id){
-        $user =User::all()->where('USER_ID', $user_id)->first();
+        $user =User::where('USER_ID', $user_id)->first();
         if(! $user){
             return $this->response->errorNotFound('用户不存在');
         }

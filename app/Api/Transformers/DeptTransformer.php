@@ -18,7 +18,8 @@ class DeptTransformer extends TransformerAbstract
             'manager'=>$dept['MANAGER'],//责任人
             'assistant_id'=>$dept['ASSISTANT_ID'],//助理
             'leader1'=>$dept['LEADER1'],//分管领导
-            'leader2'=>$dept['LEADER2']//集团领导
+            'leader2'=>$dept['LEADER2'],//集团领导
+            'dept_parent'=>$dept['DEPT_PARENT'],//上级部门
         ];
     }
 }

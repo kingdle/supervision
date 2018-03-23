@@ -12,8 +12,11 @@ use App\Models\Extension;
 class ExtensionsController extends BaseController
 {
     public function index(){
-        $extensions= Extension::all()->where('ID', '<','100');
-        return $this->collection($extensions,new ExtensionTransformer());
+        $extensions= Extension::paginate(10);
+        if($extensions->count() == 0){
+            return $this->response->errorNotFound('页面不存在');
+        }
+        return $this->response->paginator($extensions,new ExtensionTransformer());
     }
     public function show($main_id){
         $Extension =Extension::all()->where('MAIN_ID', $main_id);

@@ -12,8 +12,11 @@ use App\Models\Duty;
 class DutiesController extends BaseController
 {
     public function index(){
-        $duties= Duty::all()->where('ID', '<','100');
-        return $this->collection($duties,new DutyTransformer());
+        $duties= Duty::paginate(10);
+        if($duties->count() == 0){
+            return $this->response->errorNotFound('页面不存在');
+        }
+        return $this->response->paginator($duties,new DutyTransformer());
     }
     public function show($main_id){
         $Duty =Duty::all()->where('MAIN_ID', $main_id);

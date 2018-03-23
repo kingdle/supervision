@@ -12,14 +12,18 @@ use App\Models\Message;
 class MessagesController extends BaseController
 {
     public function index(){
-        $flows= Message::all()->where('ID', '<','100');
-        return $this->collection($flows,new MessageTransformer());
+        $messages= Message::paginate(10);
+        if($messages->count() == 0){
+            return $this->response->errorNotFound('页面不存在');
+        }
+        return $this->response->paginator($messages,new MessageTransformer());
     }
     public function show($main_id){
-        $Message =Message::all()->where('MAIN_ID', $main_id);
+        $Message =Message::where('MAIN_ID', $main_id)->paginate(10);
         if($Message->count() == 0){
             return $this->response->errorNotFound('消息不存在');
         }
-        return $this->item($Message,new MessageTransformer());
+        return $this->response->paginator($Message,new MessageTransformer());
+
     }
 }

@@ -12,8 +12,11 @@ use App\Models\Follower;
 class FollowersController extends BaseController
 {
     public function index(){
-        $followers= Follower::all();
-        return $this->collection($followers,new FollowerTransformer());
+        $followers= Follower::paginate(10);
+        if($followers->count() == 0){
+            return $this->response->errorNotFound('页面不存在');
+        }
+        return $this->response->paginator($followers,new FollowerTransformer());
     }
     public function show($id){
         $follower =Follower::find($id);

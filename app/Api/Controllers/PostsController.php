@@ -12,8 +12,11 @@ use App\Models\Post;
 class PostsController extends BaseController
 {
     public function index(){
-        $posts= Post::all();
-        return $this->collection($posts,new PostTransformer());
+        $posts= Post::paginate(10);
+        if($posts->count() == 0){
+            return $this->response->errorNotFound('页面不存在');
+        }
+        return $this->response->paginator($posts,new PostTransformer());
     }
     public function show($id){
         $post =Post::find($id);

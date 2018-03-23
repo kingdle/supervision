@@ -12,8 +12,11 @@ use App\Models\Leader;
 class LeadersController extends BaseController
 {
     public function index(){
-        $leaders= Leader::all()->where('ID', '<','100');
-        return $this->collection($leaders,new LeaderTransformer());
+        $leaders= Leader::paginate(10);
+        if($leaders->count() == 0){
+            return $this->response->errorNotFound('页面不存在');
+        }
+        return $this->response->paginator($leaders,new LeaderTransformer());
     }
     public function show($main_id){
         $Leader =Leader::all()->where('MAIN_ID', $main_id);

@@ -12,8 +12,11 @@ use App\Models\Escalation;
 class EscalationsController extends BaseController
 {
     public function index(){
-        $flows= Escalation::all()->where('ID', '<','100');
-        return $this->collection($flows,new EscalationTransformer());
+        $escalations= Escalation::paginate(10);
+        if($escalations->count() == 0){
+            return $this->response->errorNotFound('页面不存在');
+        }
+        return $this->response->paginator($escalations,new EscalationTransformer());
     }
     public function show($main_id){
         $Escalation =Escalation::all()->where('MAIN_ID', $main_id);

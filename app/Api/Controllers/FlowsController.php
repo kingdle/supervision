@@ -12,14 +12,17 @@ use App\Models\Flow;
 class FlowsController extends BaseController
 {
     public function index(){
-        $flows= Flow::all();
-        return $this->collection($flows,new FlowTransformer());
+        $flows= Flow::paginate(10);
+        if($flows->count() == 0){
+            return $this->response->errorNotFound('页面不存在');
+        }
+        return $this->response->paginator($flows,new FlowTransformer());
     }
     public function show($user_id){
-        $flow =Flow::all()->where('DUTY_USER', $user_id);
+        $flow =Flow::where('DUTY_USER','=',$user_id)->paginate(10);
         if($flow->count() == 0){
             return $this->response->errorNotFound('任务不存在');
         }
-        return $this->item($flow,new FlowTransformer());
+        return $this->response->paginator($flow,new FlowTransformer());
     }
 }

@@ -12,8 +12,11 @@ use App\Models\Over;
 class OversController extends BaseController
 {
     public function index(){
-        $extensions= Over::all()->where('ID', '<','100');
-        return $this->collection($extensions,new OverTransformer());
+        $overs= Over::paginate(10);
+        if($overs->count() == 0){
+            return $this->response->errorNotFound('页面不存在');
+        }
+        return $this->response->paginator($overs,new OverTransformer());
     }
     public function show($main_id){
         $Over =Over::all()->where('MAIN_ID', $main_id);
