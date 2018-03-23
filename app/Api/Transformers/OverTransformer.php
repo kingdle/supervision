@@ -20,7 +20,6 @@ class OverTransformer extends TransformerAbstract
             'user_id'=>$over['USER_ID'],//申请办结用户名
             'prcs_id'=>$over['PRCS_ID'],//可能是流水号
             'prcs_time'=>$over['PRCS_TIME'],//流程发起时间
-            'over_time'=>$over['EXTENSION_TIME'],//申请办结时间
             'deliver_time'=>$over['DELIVER_TIME'],//办结审批通过时间
             'content'=>$over['CONTENT'],//办结说明
         ];

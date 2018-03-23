@@ -15,9 +15,6 @@ class FlowTransformer extends TransformerAbstract
         return [
             'id'=>$flow['ID'],
             'main_id'=>$flow['MAIN_ID'],//Post主任务ID
-            'project_name'=>$flow->PROJECT_NAME,//项目名称
-            'stage_name'=>$flow['PLAN_NAME'],//阶段名称
-            'sort_name'=>$flow['BUSINESS_MATTER_NAME'],//任务名称
             'curr_prcs'=>$flow['CURR_PRCS'],//1督查人员，2承办人、责任人、分管领导
             'prcs_id'=>$flow['PRCS_ID'],//1承办人，2责任人，3分管领导
             'user_id'=>$flow['DUTY_USER'],//用户名
@@ -28,6 +25,9 @@ class FlowTransformer extends TransformerAbstract
             'child_id'=>$flow['CHILD_ID'],//子任务id
             'before_prcs'=>$flow['BEFORE_PRCS'],//前置任务
             'work_states'=>$flow['WORK_STATES'],//状态，2办理中，3为办结
+//            'project_name'=>$flow->PROJECT_NAME,//项目名称
+//            'stage_name'=>$flow['PLAN_NAME'],//阶段名称
+//            'sort_name'=>$flow['BUSINESS_MATTER_NAME'],//任务名称
 //            'id'=>$flow['ID'],
 //            'main_id'=>$flow['MAIN_ID'],//Post主任务ID
 //            'feed_time'=>$flow['FEED_BACK_TIME'],//最新反馈时间

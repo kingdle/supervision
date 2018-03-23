@@ -69,6 +69,8 @@ $api->version('v1', function ($api) {
         $api->get('v1/message/{main_id}', 'MessagesController@show');
         $api->get('v1/extension', 'ExtensionsController@index');
         $api->get('v1/extension/{main_id}', 'ExtensionsController@show');
+        $api->get('v1/over', 'OversController@index');
+        $api->get('v1/over/{main_id}', 'OversController@show');
         $api->get('v1/urge', 'UrgesController@index');
         $api->get('v1/urge/{main_id}', 'UrgesController@show');
     });
