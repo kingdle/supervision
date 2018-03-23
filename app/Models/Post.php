@@ -24,6 +24,10 @@ class Post extends Model
     {
         return $this->belongsTo(Dept::class, 'DEPT_ID');
     }
+    public function pro_task_flow_runs()
+    {
+        return $this->hasMany(Flow::class, 'MAIN_ID','ID');
+    }
 
     public function tags()
     {

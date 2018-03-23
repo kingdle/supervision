@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Gleader extends Model
+class Leader extends Model
 {
     protected $table = 'pro_feed_back_reply';
     //分管领导批示表Gleader

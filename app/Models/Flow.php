@@ -18,4 +18,8 @@ class Flow extends Model
     {
         return $this->belongsTo(User::class, 'USER_ID');
     }
+    public function pro_task_main_info()
+    {
+        return $this->belongsTo(Post::class, 'ID','MAIN_ID');
+    }
 }

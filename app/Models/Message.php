@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Mpush extends Model
+class Message extends Model
 {
     protected $table = 'pro_next_plan';
     //进展推送表Mpush

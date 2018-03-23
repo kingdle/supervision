@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'USER_ID','USER_NAME', 'MOBIL_NO', 'EMAIL','AVATAR','DEPT_ID',
+        'UID','USER_ID','USER_NAME', 'MOBIL_NO', 'EMAIL','AVATAR','DEPT_ID',
     ];
 
     public function pro_task_main_infos()
