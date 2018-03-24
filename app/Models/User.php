@@ -29,18 +29,5 @@ class User extends Authenticatable
         'PASSWORD'
     ];
 
-    public function pro_task_main_infos()
-    {
-        $this->hasMany(Post::class, 'UNDER_TAKE_USER');
-    }
-    public function pro_task_flow_runs()
-    {
-        $this->hasMany(Run::class, 'DUTY_USER');
-    }
 
-
-    public function isMember()
-    {
-        return false;
-    }
 }

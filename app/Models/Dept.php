@@ -17,10 +17,6 @@ class Dept extends Model
         'DEPT_ID','DEPT_NAME', 'MANAGER', 'ASSISTANT_ID','LEADER1','LEADER2',
     ];
 
-    public function pro_task_main_info()
-    {
-        $this->hasMany(Post::class, 'DUTY_DEPT');
-    }
     /**
      * The attributes that should be hidden for arrays.
      *
