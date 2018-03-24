@@ -18,7 +18,15 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'UID','USER_ID','USER_NAME', 'MOBIL_NO', 'EMAIL','AVATAR','DEPT_ID',
+        'UID','USER_ID','BYNAME','USER_NAME', 'MOBIL_NO', 'EMAIL','AVATAR','DEPT_ID',
+    ];
+    /**
+     * The attributes that should be hidden for arrays.
+     *
+     * @var array
+     */
+    protected $hidden = [
+        'PASSWORD'
     ];
 
     public function pro_task_main_infos()
@@ -29,26 +37,8 @@ class User extends Authenticatable
     {
         $this->hasMany(Run::class, 'DUTY_USER');
     }
-    /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
-     */
-    protected $hidden = [
-        'PASSWORD'
-    ];
-    public function sendPasswordResetNotification($token)
-    {
-        $data = [
-            'url' => url('password/reset', $token)
-        ];
-        $template = new SendCloudTemplate('maxdata_password_reset', $data);
 
-        Mail::raw($template, function ($message){
-            $message->from('nkings@163.com', '青岛西海岸');
-            $message->to($this->email);
-        });
-    }
+
     public function isMember()
     {
         return false;

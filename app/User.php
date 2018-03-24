@@ -4,8 +4,9 @@ namespace App;
 
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Tymon\JWTAuth\Contracts\JWTSubject;
 
-class User extends Authenticatable
+class User extends Authenticatable implements JWTSubject
 {
     use Notifiable;
     protected $table = 'pro_user';
@@ -15,7 +16,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'USER_ID', 'MOBIL_NO', 'DEPT_ID',
+        'USER_ID', 'MOBIL_NO', 'DEPT_ID','USER_NAME','BYNAME',
     ];
 
     /**
@@ -26,4 +27,18 @@ class User extends Authenticatable
     protected $hidden = [
         'PASSWORD', 'BIRTHDAY',
     ];
+
+    public function getJWTIdentifier()
+    {
+        return $this->getKey();
+    }
+
+    public function getJWTCustomClaims()
+    {
+        return [];
+    }
+    public function findForPassport($login)
+    {
+        return $this->orWhere('email', $login)->orWhere('MOBIL_NO', $login)->orWhere('BYNAME', $login)->first();
+    }
 }
