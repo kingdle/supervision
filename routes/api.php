@@ -67,10 +67,10 @@ $api->version('v1', function ($api) {
         $api->get('v1/duty/{main_id}', 'DutiesController@show');
         $api->get('v1/leader', 'LeadersController@index');
         $api->get('v1/leader/{main_id}', 'LeadersController@show');
-        $api->get('v1/message', 'MessagesController@index');
-        $api->get('v1/message/{main_id}', 'MessagesController@show');
-        $api->get('v1/extension', 'ExtensionsController@index');
-        $api->get('v1/extension/{main_id}', 'ExtensionsController@show');
+        $api->get('v1/news', 'NewsController@index');
+        $api->get('v1/news/{main_id}', 'NewsController@show');
+        $api->get('v1/matter', 'MattersController@index');
+        $api->get('v1/matter/{main_id}', 'MattersController@show');
         $api->get('v1/over', 'OversController@index');
         $api->get('v1/over/{main_id}', 'OversController@show');
         $api->get('v1/urge', 'UrgesController@index');

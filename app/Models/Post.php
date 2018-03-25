@@ -13,8 +13,44 @@ class Post extends Model
     protected $table = 'pro_task_main_info';
     //信息主表
 
-    protected $fillable = ['ID','PROJECT_ID','PLAN_ID','BUSINESS_MATTER_ID','WORK_STATES','DUTY_USER','DUTY_DEPT','UNDER_TAKE_USER','PLAN_BEGIN_DATE','PLAN_END_DATE','PROJECT_NAME','PLAN_NAME','BUSINESS_MATTER_NAME','PRO_PROGRESS','PRO_PLAN','created_at','updated_at','deleted_at'];
-
+    protected $fillable = [
+        'id',
+        'PROJECT_ID',
+        'PLAN_ID',
+        'BUSINESS_MATTER_ID',
+        'NODE_LEVEL',
+        'WORK_STATES',
+        'BRANCH_LEADER',
+        'DUTY_USER',
+        'UNDER_TAKE_USER',
+        'DUTY_DEPT',
+        'PROJECT_NAME',
+        'PLAN_NAME',
+        'BUSINESS_MATTER_NAME',
+        'PLAN_BEGIN_DATE',
+        'PLAN_END_DATE',
+        'PERIOD',
+        'EXPECT_DATE',
+        'ACTAL_DATE',
+        'PROJECT_NATRUE',
+        'TOP_TASK',
+        'PHASE',
+        'ATTACTMENT_ID',
+        'ATTACTMENT_NAME',
+        'PAR_FLOW_ID',
+        'IS_DEL',
+        'LAUNCH_USER',
+        'PARENT_ID',
+        'PRO_TYPE',
+        'shape_x',
+        'shape_y',
+        'deleted_at',
+        'release_at',
+        'PRO_PROGRESS',
+        'PRO_PLAN',
+        'icon',
+        'images',
+];
 
     public function pro_users()
     {

@@ -3,7 +3,7 @@
 namespace App\Api\Controllers;
 use App\Api\Requests\UserRequest;
 use App\Api\Transformers\UserTransformer;
-use App\User;
+use App\Models\User;
 
 /**
  *  * User resource representation.

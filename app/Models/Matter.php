@@ -4,7 +4,7 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class Extension extends Model
+class Matter extends Model
 {
     protected $table = 'pro_extension';
     //延期申请表Extension
