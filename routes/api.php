@@ -26,12 +26,14 @@ Route::get('user', function () {
     return json_encode($users);
 });
 Route::get('workChart', function () {
-    $lists = App\Models\Post::latest('release_at')->count();//任务总数
-    $finish = App\Models\Post::latest('release_at')->whereRaw('WORK_STATES != 2 and NODE_LEVEL != 3')->count();//办理完成
-    $lags = App\Models\Post::latest('release_at')->whereRaw('WORK_STATES != 2 and WORK_STATES != 0 and NODE_LEVEL != 3 and PLAN_END_DATE < now()')->count();//进展滞后
-    $slowly = App\Models\Post::latest('release_at')->whereRaw('WORK_STATES != 2 and WORK_STATES != 0 and NODE_LEVEL != 3 and progress=2')->count();//进展缓慢
+    $lists = App\Models\Post::latest('release_at')->whereRaw('WORK_STATES != 0')->count();//任务总数
+    $normal = App\Models\Post::latest('release_at')->whereRaw('WORK_STATES = 1 and PLAN_END_DATE >= now()')->count();//进展正常
+    $finish = App\Models\Post::latest('release_at')->whereRaw('WORK_STATES = 2')->count();//办理完成
+    $lags = App\Models\Post::latest('release_at')->whereRaw('WORK_STATES = 1 and PLAN_END_DATE < now()')->count();//进展滞后
+    $slowly = App\Models\Post::latest('release_at')->whereRaw('WORK_STATES = 4')->count();//延期
     $workChart = [
         'lists' => $lists,
+        'normal'=> $normal,
         'finish' => $finish,
         'lags' => $lags,
         'slowly' => $slowly
@@ -73,6 +75,13 @@ $api->version('v1', function ($api) {
         $api->get('v1/over/{main_id}', 'OversController@show');
         $api->get('v1/urge', 'UrgesController@index');
         $api->get('v1/urge/{main_id}', 'UrgesController@show');
+
+        // 短信验证码
+        $api->post('verificationCodes', 'VerificationCodesController@store')
+            ->name('api.verificationCodes.store');
+        // 用户注册
+        $api->post('users', 'UsersController@store')
+            ->name('api.users.store');
     });
 });
 
