@@ -55,7 +55,7 @@ $api->version('v1', function ($api) {
         //进展
         $api->get('v1/news', 'NewsController@index');
         $api->get('v1/news/{main_id}', 'NewsController@show');
-        $api->post('v1/news/query', 'NewsController@store');
+        $api->post('v1/news', 'NewsController@store');
 
         //问题、办结、延期
         $api->get('v1/matter', 'MattersController@index');

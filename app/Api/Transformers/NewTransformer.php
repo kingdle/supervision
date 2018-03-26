@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Api\Transformers;
+
 use App\Models\News;
 use League\Fractal\TransformerAbstract;
 
@@ -11,7 +12,8 @@ use League\Fractal\TransformerAbstract;
  */
 class NewTransformer extends TransformerAbstract
 {
-    public function transform(News $news){
+    public function transform(News $news)
+    {
         return [
             'id'=>$news['ID'],
             'main_id'=>$news['MAIN_ID'],
@@ -24,10 +26,11 @@ class NewTransformer extends TransformerAbstract
             'role_type'=>$news['role_type'],
             'address'=>$news['address'],
             'gis'=>$news['gis'],
+            'files'=>$news['files'],
             'images'=>$news['images'],
             'videos'=>$news['videos'],
-            'create_at'=>$news['create_at'],
-            'update_at'=>$news['update_at'],
+            'created_at'=>$news['created_at'],
+            'updated_at'=>$news['updated_at'],
             'source1'=>$news['source1'],
             'source2'=>$news['source2'],
             'source3'=>$news['source3'],
