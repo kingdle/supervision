@@ -25,5 +25,14 @@ class PostsController extends BaseController
         }
         return $this->item($post,new PostTransformer());
     }
+    public function query($request){
+//        $user_id=$request->user_id;
+        return $request;
+//        $posts =Post::where('UNDER_TAKE_USER', '=', $user_id)->paginate(10);;
+//        if(! $posts){
+//            return $this->response->errorNotFound('项目不存在');
+//        }
+//        return $this->response->paginator($posts,new PostTransformer());
+    }
 
 }

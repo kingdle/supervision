@@ -25,6 +25,7 @@ class MatterTransformer extends TransformerAbstract
             'over_time'=>$matter['over_time'],
             'deliver_time'=>$matter['DELIVER_TIME'],
             'content'=>$matter['CONTENT'],
+            'address'=>$matter['address'],
             'gis'=>$matter['gis'],
             'files'=>$matter['files'],
             'images'=>$matter['images'],

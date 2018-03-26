@@ -22,6 +22,8 @@ class NewTransformer extends TransformerAbstract
             'feedback_time'=>$news['C_TIME'],
             'user_state'=>$news['C_USER_STATE'],
             'role_type'=>$news['role_type'],
+            'address'=>$news['address'],
+            'gis'=>$news['gis'],
             'images'=>$news['images'],
             'videos'=>$news['videos'],
             'create_at'=>$news['create_at'],

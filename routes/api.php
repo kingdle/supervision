@@ -33,7 +33,7 @@ Route::get('workChart', function () {
     $slowly = App\Models\Post::latest('release_at')->whereRaw('WORK_STATES = 4')->count();//延期
     $workChart = [
         'lists' => $lists,
-        'normal'=> $normal,
+        'normal' => $normal,
         'finish' => $finish,
         'lags' => $lags,
         'slowly' => $slowly
@@ -51,26 +51,36 @@ $api->version('v1', function ($api) {
     $api->group(['namespace' => 'App\Api\Controllers'], function ($api) {
         $api->get('v1/post', 'PostsController@index');
         $api->get('v1/post/{id}', 'PostsController@show');
+
+        //进展
+        $api->get('v1/news', 'NewsController@index');
+        $api->get('v1/news/{main_id}', 'NewsController@show');
+        $api->post('v1/news/query', 'NewsController@store');
+
+        //问题、办结、延期
+        $api->get('v1/matter', 'MattersController@index');
+        $api->get('v1/matter/{main_id}', 'MattersController@show');
+
+        //流转表
+        $api->get('v1/flow', 'FlowsController@index');
+        $api->get('v1/flow/{user_id}', 'FlowsController@show');
+
+        //关注表
+        $api->get('v1/follower', 'FollowersController@index');
+        $api->get('v1/follower/{id}', 'FollowersController@show');
+
         $api->get('v1/sort', 'SortsController@index');
         $api->get('v1/sort/{id}', 'SortsController@show');
         $api->get('v1/user', 'UsersController@index');
         $api->get('v1/user/{user_id}', 'UsersController@show');
         $api->get('v1/dept', 'DeptsController@index');
         $api->get('v1/dept/{dept_id}', 'DeptsController@show');
-        $api->get('v1/flow', 'FlowsController@index');
-        $api->get('v1/flow/{user_id}', 'FlowsController@show');
-        $api->get('v1/follower', 'FollowersController@index');
-        $api->get('v1/follower/{id}', 'FollowersController@show');
         $api->get('v1/escalation', 'EscalationsController@index');
         $api->get('v1/escalation/{main_id}', 'EscalationsController@show');
         $api->get('v1/duty', 'DutiesController@index');
         $api->get('v1/duty/{main_id}', 'DutiesController@show');
         $api->get('v1/leader', 'LeadersController@index');
         $api->get('v1/leader/{main_id}', 'LeadersController@show');
-        $api->get('v1/news', 'NewsController@index');
-        $api->get('v1/news/{main_id}', 'NewsController@show');
-        $api->get('v1/matter', 'MattersController@index');
-        $api->get('v1/matter/{main_id}', 'MattersController@show');
         $api->get('v1/over', 'OversController@index');
         $api->get('v1/over/{main_id}', 'OversController@show');
         $api->get('v1/urge', 'UrgesController@index');
@@ -82,6 +92,7 @@ $api->version('v1', function ($api) {
         // 用户注册
         $api->post('users', 'UsersController@store')
             ->name('api.users.store');
+
     });
 });
 
