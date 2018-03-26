@@ -22,16 +22,15 @@ class MatterTransformer extends TransformerAbstract
             'prcs_id'=>$matter['PRCS_ID'],
             'prcs_time'=>$matter['PRCS_TIME'],
             'extension_time'=>$matter['EXTENSION_TIME'],
+            'over_time'=>$matter['over_time'],
             'deliver_time'=>$matter['DELIVER_TIME'],
             'content'=>$matter['CONTENT'],
+            'gis'=>$matter['gis'],
+            'files'=>$matter['files'],
             'images'=>$matter['images'],
             'videos'=>$matter['videos'],
-            'create_at'=>$matter['create_at'],
-            'update_at'=>$matter['update_at'],
-            'source1'=>$matter['source1'],
-            'source2'=>$matter['source2'],
-            'source3'=>$matter['source3'],
-            'source4'=>$matter['source4'],
+            'created_at'=>$matter['create_at'],
+            'updated_at'=>$matter['update_at'],
         ];
     }
 }
