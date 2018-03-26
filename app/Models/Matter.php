@@ -8,7 +8,22 @@ class Matter extends Model
 {
     protected $table = 'pro_extension';
     //延期申请表Extension
-    protected $fillable = ['ID','MAIN_ID','SQ_TYPE','USER_ID','PRCS_ID','PRCS_TIME','EXTENSION_TIME','DELIVER_TIME','CONTENT'];
+    protected $fillable = [
+        'matter_id',
+        'work_states',
+        'duty_user',
+        'content',
+        'reply_time',
+        'reply_user',
+        'project_id',
+        'plan_id',
+        'sort_id',
+        'source1',
+        'source2',
+        'source3',
+        'source4',
+        'main_id',
+    ];
 
     protected $hidden = [
 

@@ -9,8 +9,21 @@ class Flow extends Model
     protected $table = 'pro_matter_flow_run';
     //任务表Flow
     protected $fillable = [
-
-];
+        'matter_id',
+        'work_states',
+        'duty_user',
+        'content',
+        'reply_time',
+        'reply_user',
+        'project_id',
+        'plan_id',
+        'sort_id',
+        'source1',
+        'source2',
+        'source3',
+        'source4',
+        'main_id',
+    ];
     protected $hidden = [
 
     ];

@@ -14,7 +14,6 @@ class Post extends Model
     //信息主表
 
     protected $fillable = [
-        'id',
         'PROJECT_ID',
         'PLAN_ID',
         'BUSINESS_MATTER_ID',
@@ -42,6 +41,7 @@ class Post extends Model
         'LAUNCH_USER',
         'PARENT_ID',
         'PRO_TYPE',
+        'address',
         'gis',
         'deleted_at',
         'release_at',

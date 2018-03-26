@@ -9,7 +9,6 @@ class News extends Model
     protected $table = 'pro_next_plan';
     //进展推送表Mpush
     protected $fillable = [
-        'ID',
         'MAIN_ID',
         'C_USER_ID',
         'C_PROCESS',
@@ -23,8 +22,6 @@ class News extends Model
         'files',
         'images',
         'videos',
-        'created_at',
-        'updated_at',
         'source1',
         'source2',
         'source3',

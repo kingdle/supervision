@@ -3,6 +3,7 @@
 namespace App\Api\Controllers;
 use App\Api\Transformers\MatterTransformer;
 use App\Models\Matter;
+use Illuminate\Http\Request;
 
 /**
  * Class FlowsController
@@ -25,5 +26,14 @@ class MattersController extends BaseController
         }
         return $this->response->paginator($matter,new MatterTransformer());
 
+    }
+    public function store(Request $request, Matter $matter)
+    {
+        $matter->fill($request->all());
+        //        $matter->user_id = $this->user()->id;
+        $matter->save();
+
+        return $this->response->item($matter, new MatterTransformer())
+            ->setStatusCode(201);
     }
 }

@@ -3,6 +3,7 @@
 namespace App\Api\Controllers;
 use App\Api\Transformers\FlowTransformer;
 use App\Models\Flow;
+use Illuminate\Http\Request;
 
 /**
  * Class FlowsController
@@ -24,5 +25,14 @@ class FlowsController extends BaseController
             return $this->response->errorNotFound('任务不存在');
         }
         return $this->response->paginator($flow,new FlowTransformer())->addMeta('foo', 'bar');
+    }
+    public function store(Request $request, Flow $flow)
+    {
+        $flow->fill($request->all());
+        //        $flow->user_id = $this->user()->id;
+        $flow->save();
+
+        return $this->response->item($flow, new FlowTransformer())
+            ->setStatusCode(201);
     }
 }
