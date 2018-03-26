@@ -15,6 +15,24 @@ use App\Models\Image;
  */
 class ImagesController extends BaseController
 {
+    public function index()
+    {
+        $images = Image::paginate(10);
+        if ($images->count() == 0) {
+            return $this->response->errorNotFound('页面不存在');
+        }
+        return $this->response->paginator($images, new ImageTransformer());
+    }
+
+    public function show($main_id)
+    {
+        $images = Image::where('MAIN_ID', $main_id)->paginate(10);
+        if ($images->count() == 0) {
+            return $this->response->errorNotFound('图片不存在');
+        }
+        return $this->response->paginator($images, new ImageTransformer());
+
+    }
     public function store(ImageRequest $request)
     {
         $file = $request->image;

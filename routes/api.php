@@ -67,6 +67,12 @@ $api->version('v1', function ($api) {
         $api->get('v1/flow/{user_id}', 'FlowsController@show');
         $api->post('v1/flow', 'FlowsController@store');
 
+        // 图片资源
+        $api->get('v1/images', 'ImagesController@index');
+        $api->get('v1/images/{user_id}', 'ImagesController@show');
+        $api->post('images', 'ImagesController@store')
+            ->name('api.images.store');
+
         //关注表
         $api->get('v1/follower', 'FollowersController@index');
         $api->get('v1/follower/{id}', 'FollowersController@show');
@@ -98,9 +104,7 @@ $api->version('v1', function ($api) {
         $api->post('captchas', 'CaptchasController@store')
             ->name('api.captchas.store');
 
-        // 图片资源
-        $api->post('images', 'ImagesController@store')
-            ->name('api.images.store');
+
         // 第三方登录
         $api->post('socials/{social_type}/authorizations', 'AuthorizationsController@socialStore')
             ->name('api.socials.authorizations.store');

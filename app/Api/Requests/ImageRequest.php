@@ -36,8 +36,7 @@ class ImageRequest extends FormRequest
     public function messages()
     {
         return [
-            'MAIN_ID.dimensions' => '项目ID不能为空',
-            'user_id.dimensions' => '用户不能为空',
+            'image.dimensions' => '图片尺寸',
 
         ];
     }
