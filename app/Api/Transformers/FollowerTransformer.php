@@ -2,6 +2,7 @@
 
 namespace App\Api\Transformers;
 use App\Models\Follower;
+use App\Models\Sort;
 use League\Fractal\TransformerAbstract;
 
 /**
@@ -14,8 +15,9 @@ class FollowerTransformer extends TransformerAbstract
     public function transform(Follower $follower){
         return [
             'id'=>$follower['id'],
-            'follower_id'=>$follower['follower_id'],//关注人
-            'followed_id'=>$follower['followed_id'],//关注任务
+            'user_id'=>$follower['USER_ID'],//关注人
+            'project_id'=>$follower['PROJECT_ID'],//关注项目
+            'project'=>Sort::find($follower['PROJECT_ID']),
             'created_at'=>$follower['created_at'],//
             'updated_at'=>$follower['updated_at'],//
         ];

@@ -50,6 +50,9 @@ class Post extends Model
         'icon',
         'images',
 ];
+    public function followers(){
+        return $this->belongsToMany(User::class,'pro_followers')->withTimestamps();
+    }
 
     public function pro_users()
     {

@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var array
      */
     protected $fillable = [
-        'UID','USER_ID','BYNAME','USER_NAME', 'MOBIL_NO', 'EMAIL','AVATAR','DEPT_ID','USER_PRIV_NAME','USER_PRIV'
+        'USER_ID','BYNAME','USER_NAME', 'MOBIL_NO', 'EMAIL','AVATAR','DEPT_ID','USER_PRIV_NAME','USER_PRIV'
     ];
     /**
      * The attributes that should be hidden for arrays.
@@ -28,6 +28,17 @@ class User extends Authenticatable
     protected $hidden = [
         'PASSWORD'
     ];
+
+    public function follows(){
+        return $this->belongsToMany(Post::class,'pro_followes')->withTimestamps();
+    }
+    public function followThis($project){
+//        return $project;
+        return $this->follows()->toggle($project);
+    }
+    public function followed($project){
+        return !! $this->follows()->where('PROJECT_ID',$project)->count();
+    }
 
 
 }
