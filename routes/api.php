@@ -77,6 +77,7 @@ $api->version('v1', function ($api) {
         $api->get('v1/follower', 'FollowersController@index');
         $api->get('v1/follower/{user_id}', 'FollowersController@show');
         $api->post('v1/follower','FollowersController@follow');
+//        $api->post('v1/unfollower','FollowersController@unfollow');
         $api->get('v1/follower/delete/{id}', 'FollowersController@destroy');
 
         $api->get('v1/sort', 'SortsController@index');
@@ -103,8 +104,7 @@ $api->version('v1', function ($api) {
         $api->post('users', 'UsersController@store')
             ->name('api.users.store');
         // 图片验证码
-        $api->post('captchas', 'CaptchasController@store')
-            ->name('api.captchas.store');
+        $api->post('captchas', 'CaptchasController@store');
 
 
         // 第三方登录

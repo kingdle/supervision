@@ -36,8 +36,8 @@ class FollowersController extends BaseController
     {
         $USER_ID = $request->USER_ID;
         $PROJECT_ID = $request->PROJECT_ID;
-        $query = Follower::where('USER_ID', $USER_ID)->where('PROJECT_ID', $PROJECT_ID)->count();
-        if ($query == 0) {
+        $query = Follower::where('USER_ID', $USER_ID)->where('PROJECT_ID', $PROJECT_ID);
+        if ($query->count() == 0) {
             $follower->fill($request->all());
             $follower->USER_ID = $USER_ID;
             $follower->PROJECT_ID = $PROJECT_ID;
@@ -46,11 +46,13 @@ class FollowersController extends BaseController
             return $this->response->item($follower, new FollowerTransformer())
                 ->setStatusCode(201);
         }else{
-            $error = [
-                'message' => '用户已关注',
-                'status_code' => 422
-            ];
-            return json_encode($error);
+            $follower = Follower::where('USER_ID', $USER_ID)->where('PROJECT_ID', $PROJECT_ID);
+            if ($follower->delete()){
+                return json_encode([
+                    'message' => '取消关注',
+                    'status_code' => 201
+                ]);
+            }
         }
     }
     public function destroy($id)
@@ -63,4 +65,24 @@ class FollowersController extends BaseController
             ]);
         }
     }
+//    public function unfollow(Request $request,Follower $follower){
+//        $USER_ID = $request->USER_ID;
+//        $PROJECT_ID = $request->PROJECT_ID;
+//        $query = Follower::where('USER_ID', $USER_ID)->where('PROJECT_ID', $PROJECT_ID)->count();
+//        if ($query == 0) {
+//            $follower->fill($request->all());
+//            $follower->USER_ID = $USER_ID;
+//            $follower->PROJECT_ID = $PROJECT_ID;
+//            $follower->save();
+//
+//            return $this->response->item($follower, new FollowerTransformer())
+//                ->setStatusCode(201);
+//        }else{
+//            $error = [
+//                'message' => '用户已关注',
+//                'status_code' => 422
+//            ];
+//            return json_encode($error);
+//        }
+//    }
 }
