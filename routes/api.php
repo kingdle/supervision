@@ -77,7 +77,7 @@ $api->version('v1', function ($api) {
         $api->get('v1/follower', 'FollowersController@index');
         $api->get('v1/follower/{user_id}', 'FollowersController@show');
         $api->post('v1/follower','FollowersController@follow');
-        $api->delete('v1/follower/{id}', 'FollowersController@destroy');
+        $api->get('v1/follower/delete/{id}', 'FollowersController@destroy');
 
         $api->get('v1/sort', 'SortsController@index');
         $api->get('v1/sort/{id}', 'SortsController@show');
