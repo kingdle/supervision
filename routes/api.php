@@ -51,6 +51,8 @@ $api->version('v1', function ($api) {
     $api->group(['namespace' => 'App\Api\Controllers'], function ($api) {
         $api->get('v1/post', 'PostsController@index');
         $api->get('v1/post/{id}', 'PostsController@show');
+        $api->get('v1/post/user_id/{user_id}', 'PostsController@user_id');
+        $api->post('v1/post/query_project', 'PostsController@query_project');
 
         //进展
         $api->get('v1/news', 'NewsController@index');
