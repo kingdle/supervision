@@ -2,6 +2,7 @@
 
 namespace App\Api\Controllers;
 
+use App\Models\Post;
 use Illuminate\Http\Request;
 use App\Api\Requests\ImageRequest;
 use App\Api\Transformers\ImageTransformer;
@@ -33,23 +34,27 @@ class ImagesController extends BaseController
         return $this->response->paginator($images, new ImageTransformer());
 
     }
-    public function store(ImageRequest $request)
+
+    public function store(Request $request)
     {
-        $file = $request->image;
+        $data=$request->all();
+        $file = $data['image'];
+//        $file = $request->image;
         $folder_name = "uploads/images/project/" . date("Ym", time()) . '/'.date("d", time()).'/';
-//        $size = $request->type == 'avatar' ? 362 : 1024;
         $filename= time().str_random(10).'.'.$file->getClientOriginalExtension();
         $file->move(public_path($folder_name),$filename);
-//        $result = $uploader->save($request->image, str_plural($request->type), $MAIN_ID, $size);
         $image = new Image();
         $image->filename= $file->getClientOriginalName();
         $image->path = $folder_name.$filename;
         $image->type = $file->getClientOriginalExtension();
         $image->MAIN_ID= $request->MAIN_ID;
         $image->user_id= $request->user_id;
+        $imageArray= [$folder_name.$filename];
+        Post::where('id','=', $request->MAIN_ID)->update(['images' => json_encode($imageArray)]);
+
         $image->save();
 
         return $this->response->item($image, new ImageTransformer())->setStatusCode(201);
+        }
     }
-}
 

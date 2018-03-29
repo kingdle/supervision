@@ -5,6 +5,7 @@ namespace App\Api\Controllers;
 use App\Api\Requests\NewsRequest;
 use App\Api\Transformers\NewTransformer;
 use App\Models\News;
+use App\Models\Post;
 use Dingo\Api\Contract\Http\Request;
 
 /**
@@ -36,7 +37,7 @@ class NewsController extends BaseController
     public function store(Request $request, News $news)
     {
         $news->fill($request->all());
-        //        $news->user_id = $this->user()->id;
+        Post::where('id','=', $request->MAIN_ID)->update(['PRO_PROGRESS' => $request->C_PROCESS]);
         $news->save();
 
         return $this->response->item($news, new NewTransformer())

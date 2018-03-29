@@ -70,8 +70,7 @@ $api->version('v1', function ($api) {
         // 图片资源
         $api->get('v1/images', 'ImagesController@index');
         $api->get('v1/images/{user_id}', 'ImagesController@show');
-        $api->post('images', 'ImagesController@store')
-            ->name('api.images.store');
+        $api->post('images', 'ImagesController@store');
 
         //关注表
         $api->get('v1/follower', 'FollowersController@index');

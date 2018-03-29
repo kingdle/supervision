@@ -41,6 +41,7 @@ class FollowersController extends BaseController
             $follower->fill($request->all());
             $follower->USER_ID = $USER_ID;
             $follower->PROJECT_ID = $PROJECT_ID;
+            $follower->created_at = now();
             $follower->save();
 
             return $this->response->item($follower, new FollowerTransformer())

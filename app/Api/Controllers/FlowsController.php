@@ -29,7 +29,6 @@ class FlowsController extends BaseController
     public function store(Request $request, Flow $flow)
     {
         $flow->fill($request->all());
-        //        $flow->user_id = $this->user()->id;
         $flow->save();
 
         return $this->response->item($flow, new FlowTransformer())
