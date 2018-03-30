@@ -49,7 +49,7 @@ class ImagesController extends BaseController
         $image->type = $file->getClientOriginalExtension();
         $image->MAIN_ID= $request->MAIN_ID;
         $image->user_id= $request->user_id;
-        $imageArray= [$folder_name.$filename];
+        $imageArray= $folder_name.$filename;
         Post::where('id','=', $request->MAIN_ID)->update(['images' => json_encode($imageArray)]);
 
         $image->save();

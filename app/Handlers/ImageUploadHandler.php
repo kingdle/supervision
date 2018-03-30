@@ -1,6 +1,8 @@
 <?php
 namespace App\Handlers;
-use Image;
+
+use App\Models\Image;
+
 class ImageUploadHandler
 {
     protected $allowed_ext = ["png", "jpg", "gif", 'jpeg'];
