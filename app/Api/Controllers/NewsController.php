@@ -38,29 +38,36 @@ class NewsController extends BaseController
     public function store(Request $request, News $news)
     {
         $news->fill($request->all());
-        $file = $request->file('images');
-        $filePath = [];
-        if($file){
-            foreach ($file as $key => $value) {
-                if (!$value->isValid()) {
-                    return $this->response->errorNotFound('图片上传失败，请重试');
-                }
-                if (!empty($value)) {
-                    $allowed_extensions = ["png", "jpg", "jpeg", "gif"];
-                    if ($value->getClientOriginalExtension() && !in_array($value->getClientOriginalExtension(), $allowed_extensions)) {
-                        return $this->response->errorNotFound('您只能上传PNG、JPG或GIF格式的图片！');
-                    }
-                    $destinationPath = '/uploads/images/project/' . date("Ym", time()) . '/' . date("d", time());
-                    $extension = $value->getClientOriginalExtension();
-                    $fileName = date('YmdHis') . mt_rand(100, 999) . '.' . $extension;
-                    $value->move(public_path() . $destinationPath, $fileName);
-                    $filePath[] = $destinationPath . '/' . $fileName;
+//        $file = $request->file('images');
+//        $filePath = [];
+//        if($file){
+//            foreach ($file as $key => $value) {
+//                if (!$value->isValid()) {
+//                    return $this->response->errorNotFound('图片上传失败，请重试');
+//                }
+//                if (!empty($value)) {
+//                    $allowed_extensions = ["png", "jpg", "jpeg", "gif"];
+//                    if ($value->getClientOriginalExtension() && !in_array($value->getClientOriginalExtension(), $allowed_extensions)) {
+//                        return $this->response->errorNotFound('您只能上传PNG、JPG或GIF格式的图片！');
+//                    }
+//                    $destinationPath = '/uploads/images/project/' . date("Ym", time()) . '/' . date("d", time());
+//                    $extension = $value->getClientOriginalExtension();
+//                    $fileName = date('YmdHis') . mt_rand(100, 999) . '.' . $extension;
+//                    $value->move(public_path() . $destinationPath, $fileName);
+//                    $filePath[] = $destinationPath . '/' . $fileName;
+//
+//                }
+//            }
+//        }
+//
+//        $news->images = json_encode($filePath);
 
-                }
-            }
-        }
+        Post::where('id', '=', $request->MAIN_ID)->update(['images' => $request->images, 'PRO_PROGRESS' => $request->C_PROCESS]);
+        $news->save();
 
-// 返回上传图片路径，用于保存到数据库中
+        return $this->response->item($news, new NewTransformer())->setStatusCode(201);
+
+        // 返回上传图片路径，用于保存到数据库中
 
 //        单图上传写法
 //        $file = $request->images;
@@ -68,14 +75,6 @@ class NewsController extends BaseController
 //        $filename= time().str_random(10).'.'.$file->getClientOriginalExtension();
 //        $file->move(public_path($folder_name),$filename);
 //        $images=$folder_name.$filename;
-
-        $news->images = json_encode($filePath);
-
-
-        Post::where('id', '=', $request->MAIN_ID)->update(['images' => json_encode($filePath), 'PRO_PROGRESS' => $request->C_PROCESS]);
-        $news->save();
-
-        return $this->response->item($news, new NewTransformer())->setStatusCode(201);
     }
 
 }
