@@ -65,7 +65,7 @@ class NewsController extends BaseController
 //
 //        $news->images = json_encode($filePath);
 
-        Post::where('id', '=', $request->MAIN_ID)->update(['images' => $request->images, 'PRO_PROGRESS' => $request->C_PROCESS]);
+        Post::where('id', '=', $request->MAIN_ID)->update(['images' => $request->images, 'PRO_PROGRESS' => $request->C_PROCESS, 'news_at' => now()]);
         $news->save();
 
         return $this->response->item($news, new NewTransformer())->setStatusCode(201);
