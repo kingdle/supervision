@@ -40,23 +40,26 @@ class NewsController extends BaseController
         $news->fill($request->all());
         $file = $request->file('images');
         $filePath = [];
-        foreach ($file as $key => $value) {
-            if (!$value->isValid()) {
-                return $this->response->errorNotFound('图片上传失败，请重试');
-            }
-            if (!empty($value)) {
-                $allowed_extensions = ["png", "jpg", "jpeg", "gif"];
-                if ($value->getClientOriginalExtension() && !in_array($value->getClientOriginalExtension(), $allowed_extensions)) {
-                    return $this->response->errorNotFound('您只能上传PNG、JPG或GIF格式的图片！');
+        if($file){
+            foreach ($file as $key => $value) {
+                if (!$value->isValid()) {
+                    return $this->response->errorNotFound('图片上传失败，请重试');
                 }
-                $destinationPath = '/uploads/images/project/' . date("Ym", time()) . '/' . date("d", time());
-                $extension = $value->getClientOriginalExtension();
-                $fileName = date('YmdHis') . mt_rand(100, 999) . '.' . $extension;
-                $value->move(public_path() . $destinationPath, $fileName);
-                $filePath[] = $destinationPath . '/' . $fileName;
+                if (!empty($value)) {
+                    $allowed_extensions = ["png", "jpg", "jpeg", "gif"];
+                    if ($value->getClientOriginalExtension() && !in_array($value->getClientOriginalExtension(), $allowed_extensions)) {
+                        return $this->response->errorNotFound('您只能上传PNG、JPG或GIF格式的图片！');
+                    }
+                    $destinationPath = '/uploads/images/project/' . date("Ym", time()) . '/' . date("d", time());
+                    $extension = $value->getClientOriginalExtension();
+                    $fileName = date('YmdHis') . mt_rand(100, 999) . '.' . $extension;
+                    $value->move(public_path() . $destinationPath, $fileName);
+                    $filePath[] = $destinationPath . '/' . $fileName;
 
+                }
             }
         }
+
 // 返回上传图片路径，用于保存到数据库中
 
 //        单图上传写法
