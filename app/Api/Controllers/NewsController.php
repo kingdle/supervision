@@ -38,6 +38,9 @@ class NewsController extends BaseController
     public function store(Request $request, News $news)
     {
         $news->fill($request->all());
+        $news->C_TIME=now();
+
+
 //        $file = $request->file('images');
 //        $filePath = [];
 //        if($file){
