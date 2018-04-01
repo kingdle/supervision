@@ -166,6 +166,8 @@ return [
         Barryvdh\Cors\ServiceProvider::class,
         Tymon\JWTAuth\Providers\LaravelServiceProvider::class,
         App\Providers\EasySmsServiceProvider::class,
+        Naux\Mail\SendCloudServiceProvider::class,
+        HyanCat\ShortMessenger\SmsServiceProvider::class,
         /*
          * Package Service Providers...
          */

@@ -39,22 +39,21 @@ class NewsController extends BaseController
     {
         $news->fill($request->all());
         $file = $request->file('images');
-        $filePath =[];
+        $filePath = [];
         foreach ($file as $key => $value) {
-            // 判断图片上传中是否出错
             if (!$value->isValid()) {
                 return $this->response->errorNotFound('图片上传失败，请重试');
             }
-            if(!empty($value)){//此处防止没有多文件上传的情况
-                $allowed_extensions = ["png", "jpg", "gif"];
+            if (!empty($value)) {
+                $allowed_extensions = ["png", "jpg", "jpeg", "gif"];
                 if ($value->getClientOriginalExtension() && !in_array($value->getClientOriginalExtension(), $allowed_extensions)) {
                     return $this->response->errorNotFound('您只能上传PNG、JPG或GIF格式的图片！');
                 }
-                $destinationPath = '/uploads/images/project/'.date("Ym", time()).'/'.date("d", time()); // public文件夹下面uploads/xxxx-xx-xx 建文件夹
-                $extension = $value->getClientOriginalExtension();   // 上传文件后缀
-                $fileName = date('YmdHis').mt_rand(100,999).'.'.$extension; // 重命名
-                $value->move(public_path().$destinationPath, $fileName); // 保存图片
-                $filePath[] = $destinationPath.'/'.$fileName;
+                $destinationPath = '/uploads/images/project/' . date("Ym", time()) . '/' . date("d", time());
+                $extension = $value->getClientOriginalExtension();
+                $fileName = date('YmdHis') . mt_rand(100, 999) . '.' . $extension;
+                $value->move(public_path() . $destinationPath, $fileName);
+                $filePath[] = $destinationPath . '/' . $fileName;
 
             }
         }
@@ -70,7 +69,7 @@ class NewsController extends BaseController
         $news->images = json_encode($filePath);
 
 
-        Post::where('id','=', $request->MAIN_ID)->update(['images' => json_encode($filePath),'PRO_PROGRESS' => $request->C_PROCESS]);
+        Post::where('id', '=', $request->MAIN_ID)->update(['images' => json_encode($filePath), 'PRO_PROGRESS' => $request->C_PROCESS]);
         $news->save();
 
         return $this->response->item($news, new NewTransformer())->setStatusCode(201);

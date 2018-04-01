@@ -10,13 +10,19 @@ return [
 
         // 默认可用的发送网关
         'gateways' => [
-            'yunpian',
+            'sendcloud',
+//            'yunpian'
         ],
     ],
     // 可用的网关配置
     'gateways' => [
         'errorlog' => [
             'file' => '/tmp/easy-sms.log',
+        ],
+        'sendcloud' => [
+            'sms_user' => env('SEND_CLOUD_USER'),
+            'sms_key' => env('SEND_CLOUD_KEY'),
+            'timestamp' => false, // 是否启用时间戳
         ],
         'yunpian' => [
             'api_key' => env('YUNPIAN_API_KEY'),

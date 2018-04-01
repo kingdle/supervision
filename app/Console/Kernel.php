@@ -26,6 +26,7 @@ class Kernel extends ConsoleKernel
     {
         $schedule->command('inspire')->everyTenMinutes();
         $schedule->command('route:list')->dailyAt('02:00');
+        $schedule->command('command:reminding')->dailyAt('11:00')->weekdays();;
     }
 
     /**

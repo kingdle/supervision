@@ -39,5 +39,9 @@ return [
         'client_secret' => env('WEIXIN_SECRET'),
         'redirect' => env('WEIXIN_REDIRECT_URI'),
     ],
+    'sendcloud' => [
+        'api_user' => env('SEND_CLOUD_USER'),
+        'api_key'  => env('SEND_CLOUD_KEY'),
+    ],
 
 ];
