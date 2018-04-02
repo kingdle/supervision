@@ -73,12 +73,19 @@ $(function () {
                 var tasks = curData.finish + curData.normal + curData.lags + curData.slowly;
                 var option = {
                     title: {
-                        text: '项目总数:' + curData.all + '个\n\n工作任务:' + tasks + '项\n\n延期任务:' + curData.slowly + '项\n\n滞后任务:' + curData.lags + '项',
+                        text: '项目总数:' + curData.all + '个\n\n工作任务:' + tasks + '项\n\n延期任务:' + curData.slowly + '项\n\n{warn|滞后任务:' + curData.lags + '项}',
                         left: 20,
                         top: '35%',
                         textStyle: {
                             fontWeight: '200',
-                            fontSize: 14
+                            fontSize: 14,
+                            rich: {
+                                warn: {
+                                    color: '#ed3f3f',
+                                    fontSize: 14,
+                                    fontWeight: 'bolder'
+                                }
+                            }
                         }
                     },
                     series: [
@@ -140,33 +147,39 @@ $(function () {
                 var curData = chartDatas.c2;
                 var scaleData = [
                     {
-                        'name': '办结',
-                        'value': curData.wanjie
+                        'name': '项目数',
+                        'value': curData.all
                     },
+                    // {
+                    //     'name': '正常',
+                    //     'value': curData.zhengchang
+                    // },
                     {
-                        'name': '正常',
-                        'value': curData.zhengchang
-                    },
-                    {
-                        'name': '滞后',
+                        'name': '滞后项目数',
                         'value': curData.zhihou
                     },
-                    {
-                        'name': '延期',
-                        'value': curData.yanqi
-                    }
+                    // {
+                    //     'name': '延期',
+                    //     'value': curData.yanqi
+                    // }
                 ];
                 //间隔数字
                 var center = ['60%', '60%'];
-                var tasks = curData.wanjie + curData.zhengchang + curData.zhihou + curData.yanqi;
                 var option = {
                     title: {
-                        text: '项目总数:' + curData.all + '个\n\n工作任务:' + tasks + '项\n\n延期任务:' + curData.yanqi + '项\n\n滞后任务:' + curData.zhihou + '项',
+                        text: '项目数:' + curData.all + '项\n\n{warn|滞后项目数:' + curData.zhihou + '项}',
                         left: 20,
                         top: '35%',
                         textStyle: {
                             fontWeight: '200',
-                            fontSize: 14
+                            fontSize: 14,
+                            rich: {
+                                warn: {
+                                    color: '#ed3f3f',
+                                    fontSize: 14,
+                                    fontWeight: 'bolder'
+                                }
+                            }
                         }
                     },
                     series: [
@@ -177,9 +190,9 @@ $(function () {
                             center: center,
                             color: [
                                 '#007aff',//办结
-                                '#24d477',//正常
+                                // '#24d477',//正常
                                 '#ed3f3f',//滞后
-                                '#ff9000'//延期
+                                // '#ff9000'//延期
                             ],
                             data: scaleData,
                             label: {
@@ -194,10 +207,10 @@ $(function () {
                             }
                         },
                         {
-                            name: '进度',
+                            name: '滞后',
                             type: 'liquidFill',
                             data: (function () {
-                                var a = curData.wanjie, b = curData.all;
+                                var a = curData.zhihou, b = curData.all;
                                 if (b === 0) {
                                     return [0];
                                 }
@@ -228,19 +241,19 @@ $(function () {
                 var curData = chartDatas.c3;
                 var scaleData = [
                     {
-                        'name': '办结',
+                        'name': '任务数',
                         'value': curData.finish
                     },
+                    // {
+                    //     'name': '正常',
+                    //     'value': curData.normal
+                    // },
                     {
-                        'name': '正常',
-                        'value': curData.normal
-                    },
-                    {
-                        'name': '滞后',
+                        'name': '滞后任务',
                         'value': curData.lags
                     },
                     {
-                        'name': '延期',
+                        'name': '延期任务',
                         'value': curData.slowly
                     }
                 ];
@@ -249,12 +262,19 @@ $(function () {
                 var tasks = curData.finish + curData.normal + curData.lags + curData.slowly;
                 var option = {
                     title: {
-                        text: '项目总数:' + curData.all + '个\n\n工作任务:' + tasks + '项\n\n延期任务:' + curData.slowly + '项\n\n滞后任务:' + curData.lags + '项',
+                        text: '任务数:' + curData.all + '个\n\n延期任务:' + curData.slowly + '项\n\n{warn|滞后任务:' + curData.lags + '项}',
                         left: 20,
                         top: '35%',
                         textStyle: {
                             fontWeight: '200',
-                            fontSize: 14
+                            fontSize: 14,
+                            rich: {
+                                warn: {
+                                    color: '#ed3f3f',
+                                    fontSize: 14,
+                                    fontWeight: 'bolder'
+                                }
+                            }
                         }
                     },
                     series: [
@@ -265,7 +285,7 @@ $(function () {
                             center: center,
                             color: [
                                 '#007aff',//办结
-                                '#24d477',//正常
+                                // '#24d477',//正常
                                 '#ed3f3f',//滞后
                                 '#ff9000'//延期
                             ],
@@ -282,10 +302,10 @@ $(function () {
                             }
                         },
                         {
-                            name: '进度',
+                            name: '滞后',
                             type: 'liquidFill',
                             data: (function () {
-                                var a = curData.finish, b = curData.all;
+                                var a = curData.lags, b = curData.all;
                                 if (b === 0) {
                                     return [0];
                                 }
@@ -323,6 +343,24 @@ $(function () {
                         max: 18,
                         min: 5
                     }
+                });
+                //散点
+                $.ajax({
+                    url: 'data/mapData.json'
+                }).done(function (mapData) {
+                    var overlay = new inMap.DotOverlay({
+                        style: {
+                            normal: {
+                                backgroundColor: "#ee4340", // 填充颜色
+                                shadowColor: "rgba(255, 255, 255, 1)", // 投影颜色
+                                shadowBlur: 35, // 投影模糊级数
+                                globalCompositeOperation: "lighter", // 颜色叠加方式
+                                size: 5 // 半径
+                            }
+                        },
+                        data: mapData
+                    });
+                    inmap.add(overlay);
                 });
             },
             c5: function (domId) {
