@@ -10,7 +10,7 @@ use Naux\Mail\SendCloudTemplate;
 
 class User extends Authenticatable
 {
-    protected $table = 'user';
+    protected $table = 'pro_user';
     /**
      * The attributes that are mass a
      * ssignable.
