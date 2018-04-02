@@ -147,15 +147,15 @@ $(function () {
                 var curData = chartDatas.c2;
                 var scaleData = [
                     {
-                        'name': '项目数',
-                        'value': curData.all
+                        'name': '正常项目',
+                        'value': curData.all-curData.zhihou
                     },
                     // {
                     //     'name': '正常',
                     //     'value': curData.zhengchang
                     // },
                     {
-                        'name': '滞后项目数',
+                        'name': '滞后项目',
                         'value': curData.zhihou
                     },
                     // {
@@ -241,8 +241,8 @@ $(function () {
                 var curData = chartDatas.c3;
                 var scaleData = [
                     {
-                        'name': '任务数',
-                        'value': curData.finish
+                        'name': '正常任务',
+                        'value': curData.all-curData.lags-curData.slowly
                     },
                     // {
                     //     'name': '正常',
@@ -262,7 +262,7 @@ $(function () {
                 var tasks = curData.finish + curData.normal + curData.lags + curData.slowly;
                 var option = {
                     title: {
-                        text: '任务数:' + curData.all + '个\n\n延期任务:' + curData.slowly + '项\n\n{warn|滞后任务:' + curData.lags + '项}',
+                        text: '正常任务:' + curData.all + '个\n\n延期任务:' + curData.slowly + '项\n\n{warn|滞后任务:' + curData.lags + '项}',
                         left: 20,
                         top: '35%',
                         textStyle: {

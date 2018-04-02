@@ -25,7 +25,7 @@
     <div class="article">
         <div class="con con-flow">
             <small class="text-muted">任务号：</small>
-            <strong>{{d.task.id}}</strong>
+            <strong>1037</strong>
             <small class="text-muted">级别：</small>
             {{d.task.level}}
         </div>
@@ -50,7 +50,9 @@
             {{d.task.content||'无'}}
         </div>
         <div class="con con-now">
-            <span class="text-muted"><i class="fa fa-clock-o"></i>{{d.task.updated_at}}更新</span>
+            <span class="text-muted"><i class="fa fa-clock-o"></i>
+            
+            </span>
         </div>
     </div>
 </script>
@@ -67,27 +69,27 @@
 <script type="text/html" id="flow-tpl">
     {{# layui.each(d.list, function(index, item){ }}
     <li class="reply-message">
-        {{# if(item.images&&item.images,length>0){ }}
+        {{# if(item.images&&item.images.length>0){ }}
         <ul>
             <div class="reply-user">
                 <a href="javascript:void(0)" class="pic visible-lg">
-                    <img src="{{item.images[0]}}" class="img-circle" width="200">
+                    <img src="{{JSON.parse(item.images)[0]}}" class="img-circle" width="200">
                 </a>
             </div>
         </ul>
         {{# } }}
         <div class="reply-con">
-            {{item.content}}<br>
-            <span style="color:#098706">{{item.plan}}</span><br>
+            {{item.content||''}}<br>
+            <span style="color:#098706">{{item.plan||''}}</span><br>
             <span style="color:#abd9ea">{{d.userMap[item.user_id].USER_NAME}}</span>&nbsp;<span
                 style="color:red;">(承办人)</span>
             {{item.feedback_time}}
         </div>
         <div class="reply-img">
-            {{# if(item.images){ }}
+            {{# if(item.images&&item.images.length>0){ }}
             <ul>
-                {{# layui.each(item.images, function(imgIndex, imgPath){ }}
-                <li><img src="{{imgPath}}" class="feed-photo"></li>
+                {{# layui.each(JSON.parse(item.images), function(imgIndex, imgPath){ }}
+                <li><img src="{{imgPath}}" class="feed-photo" style="height: 100px;"></li>
                 {{# }); }}
             </ul>
             {{# } }}

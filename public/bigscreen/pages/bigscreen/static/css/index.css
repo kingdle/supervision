@@ -61,7 +61,8 @@ img.border.rb {
   line-height: 30px;
   color: #fff;
   text-align: left;
-  font-size: 16px;
+  font-size: 18px;
+  font-weight: 700;
   position: absolute;
   z-index: 2000;
   padding-left: 10px;
