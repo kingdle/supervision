@@ -27,7 +27,7 @@ class NewsController extends BaseController
 
     public function show($main_id)
     {
-        $news = News::where('MAIN_ID', $main_id)->paginate(10);
+        $news = News::where('MAIN_ID', $main_id)->orderBy('id', 'desc')->paginate(10);
         if ($news->count() == 0) {
             return $this->response->errorNotFound('消息不存在');
         }
