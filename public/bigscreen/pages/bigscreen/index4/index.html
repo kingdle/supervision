@@ -163,11 +163,11 @@
                 <div class="flow-layout-width">
                     {{index+1}}
                 </div>
-                <div class="flow-layout-flex " title="{{item.proName}}">
+                <div class="flow-layout-flex " title="{{item.proName}}" style="overflow:hidden;text-overflow:ellipsis;white-space:nowrap;">
                     <!--{{#  if(item.isStar){ }}-->
                     <!--<i class="layui-icon">&#xe600;</i>-->
                     <!--{{#  } }}-->
-                    {{item.proName}}
+                    {{item.proName}}-{{item.taskName}}
                 </div>
                 <!--<div class="flow-layout-flex" title="{{item.stage}}">{{item.stage}}</div>-->
                 <!--<div class="flow-layout-flex" title="{{item.taskName}}">{{item.taskName}}</div>-->

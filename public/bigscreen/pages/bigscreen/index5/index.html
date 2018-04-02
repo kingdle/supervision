@@ -25,7 +25,7 @@
     <div class="article">
         <div class="con con-flow">
             <small class="text-muted">任务号：</small>
-            <strong>1037</strong>
+            <strong>{{d.task.id}}</strong>
             <small class="text-muted">级别：</small>
             {{d.task.level}}
         </div>
@@ -50,7 +50,7 @@
             {{d.task.content||'无'}}
         </div>
         <div class="con con-now">
-            <span class="text-muted"><i class="fa fa-clock-o"></i>{{layui.util.toDateString(new Date(d.task.updated_at), 'yyyy-MM-dd')}}</span>更新
+            <span class="text-muted"><i class="fa fa-clock-o"></i>{{d.task.updated_at}}更新</span>
         </div>
     </div>
 </script>

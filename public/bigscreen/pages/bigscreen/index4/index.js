@@ -73,16 +73,16 @@ $(function () {
                 var tasks = curData.finish + curData.normal + curData.lags + curData.slowly;
                 var option = {
                     title: {
-                        text: '项目总数:' + curData.all + '个\n\n工作任务:' + tasks + '项\n\n延期任务:' + curData.slowly + '项\n\n{warn|滞后任务:' + curData.lags + '项}',
+                        text: '工作任务:' + tasks + '项\n\n延期任务:' + curData.slowly + '项\n\n{warn|滞后任务:' + curData.lags + '项}',
                         left: 20,
                         top: '35%',
                         textStyle: {
                             fontWeight: '200',
-                            fontSize: 14,
+                            fontSize: 16,
                             rich: {
                                 warn: {
                                     color: '#ed3f3f',
-                                    fontSize: 14,
+                                    fontSize: 18,
                                     fontWeight: 'bolder'
                                 }
                             }
@@ -103,7 +103,7 @@ $(function () {
                             data: scaleData,
                             label: {
                                 normal: {
-                                    fontSize: 14,
+                                    fontSize: 16,
                                     formatter: '{b}:{c}'
                                 },
                                 emphasis: {
@@ -169,14 +169,14 @@ $(function () {
                     title: {
                         text: '项目数:' + curData.all + '项\n\n{warn|滞后项目数:' + curData.zhihou + '项}',
                         left: 20,
-                        top: '35%',
+                        top: '40%',
                         textStyle: {
                             fontWeight: '200',
-                            fontSize: 14,
+                            fontSize: 16,
                             rich: {
                                 warn: {
                                     color: '#ed3f3f',
-                                    fontSize: 14,
+                                    fontSize: 18,
                                     fontWeight: 'bolder'
                                 }
                             }
@@ -197,7 +197,7 @@ $(function () {
                             data: scaleData,
                             label: {
                                 normal: {
-                                    fontSize: 14,
+                                    fontSize: 16,
                                     formatter: '{b}:{c}'
                                 },
                                 emphasis: {
@@ -267,11 +267,11 @@ $(function () {
                         top: '35%',
                         textStyle: {
                             fontWeight: '200',
-                            fontSize: 14,
+                            fontSize: 16,
                             rich: {
                                 warn: {
                                     color: '#ed3f3f',
-                                    fontSize: 14,
+                                    fontSize: 18,
                                     fontWeight: 'bolder'
                                 }
                             }
@@ -292,7 +292,7 @@ $(function () {
                             data: scaleData,
                             label: {
                                 normal: {
-                                    fontSize: 14,
+                                    fontSize: 16,
                                     formatter: '{b}:{c}'
                                 },
                                 emphasis: {
