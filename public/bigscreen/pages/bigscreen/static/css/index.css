@@ -1,0 +1,320 @@
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  font-family: "Microsoft Yahei";
+  overflow: hidden;
+}
+html {
+  background: #0e2a43;
+}
+img.border {
+  position: absolute;
+  width: 45%;
+  height: 50%;
+  z-index: -100;
+}
+img.border.lt {
+  left: 10px;
+  top: 40px;
+}
+img.border.rb {
+  right: 10px;
+  bottom: 5px;
+}
+::-webkit-scrollbar {
+  display: none;
+}
+.sy-col {
+  display: flex;
+  flex-flow: row;
+  margin: 2px 0;
+}
+.sy-col > .sy-row {
+  height: 100%;
+  flex: 1;
+}
+.sy-col > .sy-col {
+  width: 100%;
+  flex: 1;
+}
+.sy-row {
+  display: flex;
+  flex-flow: column;
+  margin: 0 2px;
+}
+.sy-row > .sy-col {
+  width: 100%;
+  flex: 1;
+}
+.sy-row > .sy-row {
+  height: 100%;
+  flex: 1;
+}
+.sy-panel {
+  position: relative;
+}
+.sy-panel .sy-panel-title {
+  flex: none;
+  height: 30px;
+  line-height: 30px;
+  color: #fff;
+  text-align: left;
+  font-size: 16px;
+  position: absolute;
+  z-index: 2000;
+  padding-left: 10px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  top: 10px;
+  left: 8px;
+  display: inline-block;
+  padding-right: 10px;
+  background-size: 100% 100%;
+  border-bottom: #3aaaaa solid 1px;
+}
+.sy-panel .sy-panel-content {
+  flex: 1;
+}
+.sy-panel .sy-panel-chart {
+  flex: 1;
+  border: 1px rgba(144, 180, 218, 0.34) dashed;
+}
+.title {
+  position: absolute;
+  top: 0;
+  left: 20%;
+  color: #fff;
+  text-align: center;
+  font-size: 28px;
+  height: 50px;
+  line-height: 60px;
+}
+.border-inner {
+  border: 1px rgba(144, 180, 218, 0.34) dashed;
+}
+.item-infos {
+  width: 100%;
+  flex: 1;
+  border: 1px solid #8cffef;
+  padding: 0;
+  margin-bottom: 5px;
+}
+.item-infos legend {
+  text-align: center;
+  color: #8cffef;
+}
+.item-infos .label,
+.item-infos .value {
+  height: 100%;
+  display: inline-block;
+  color: #fff;
+  margin: 5px 0;
+}
+.item-infos .label {
+  width: 30%;
+  text-align: right;
+}
+.item-infos .value {
+  color: #f4b738 !important;
+  width: 60%;
+  text-align: right;
+  font: 20px / 1 Courier;
+  font-weight: bold;
+}
+.item-infos > div {
+  padding-top: 5px;
+}
+.item-infos-panel {
+  height: 100%;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+}
+.item-infos-panel .label {
+  text-align: center;
+  flex: 6;
+  color: #fff;
+  font-size: 14px;
+}
+.item-infos-panel .value {
+  text-align: right;
+  margin-right: 20px;
+  flex: 3;
+  color: #F4B738;
+  font-size: 26px;
+}
+.item-time {
+  flex: none;
+  width: 130px;
+  text-align: right;
+  color: #2fe64c;
+  vertical-align: middle;
+  line-height: 40px;
+  padding-right: 10px;
+}
+.flow-title {
+  position: absolute;
+  top: 35px;
+  left: 10px;
+  right: 20px;
+  height: 40px;
+  display: flex;
+  flex-flow: row;
+  color: #fff;
+  font-size: 14px;
+  line-height: 40px;
+  text-align: center;
+}
+.flow-content {
+  position: absolute;
+  top: 65px;
+  left: 10px;
+  right: 20px;
+  bottom: 10px;
+  overflow: hidden;
+  color: #fff;
+}
+.flow-content li.active {
+  background: #b5b4ed;
+}
+.flow-content .flow-name {
+  text-decoration: none;
+  color: #44D3E4;
+  display: block;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  font-size: 14px;
+}
+.flow-content .flow-state {
+  text-align: center;
+}
+.flow-content .flow-time {
+  text-align: center;
+  color: #E49344;
+}
+.flow-content .task {
+  display: inline-block;
+  width: 25px;
+  background: left center no-repeat;
+  background-size: 20px 20px;
+}
+.flow-content .task.yq {
+  background-image: url("../img/logo/yq.png");
+}
+.flow-content .task.zc {
+  background-image: url("../img/logo/zc.png");
+}
+.flow-content .task.zh {
+  background-image: url("../img/logo/zh.png");
+}
+.flow-content .task.jx_yq {
+  background-image: url("../img/logo/jx_yq.png");
+}
+.flow-content .task.jx_zc {
+  background-image: url("../img/logo/jx_zc.png");
+}
+.flow-content .state.jx {
+  color: #98DDA1;
+}
+.flow-content .state.db {
+  color: #EE7E7E;
+}
+.flow-content .state.zrr {
+  color: #8DC1EA;
+}
+.flow-title .flow-name,
+.flow-content .flow-name,
+.flow-title .flow-layout-flex,
+.flow-content .flow-layout-flex {
+  flex: 1;
+  height: 40px;
+}
+.flow-title .flow-state,
+.flow-content .flow-state,
+.flow-title .flow-time,
+.flow-content .flow-time,
+.flow-title .flow-layout-width,
+.flow-content .flow-layout-width {
+  text-align: center;
+  width: 50px;
+  height: 40px;
+}
+.flow-selected {
+  position: absolute;
+  right: 2px;
+  top: 70px;
+  color: #7192ff;
+  font-size: 20px !important;
+}
+.flow-control {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  color: #9ac0c3;
+}
+.flow-control i {
+  cursor: pointer;
+  font-size: 20px;
+}
+.dialog-content {
+  position: absolute;
+  top: 25px;
+  left: 20px;
+  right: 10px;
+  bottom: 10px;
+  z-index: 1992;
+  overflow-y: scroll;
+}
+.dialog-content ul,
+.dialog-content li {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+.dialog-content .dialog-time {
+  font-size: 12px;
+  color: #fff9ec;
+  text-align: left;
+  padding-left: 60px;
+  margin-bottom: 5px;
+  margin-top: 20px;
+}
+.dialog-content .dialog-info {
+  width: 100%;
+  display: flex;
+  flex-flow: row;
+}
+.dialog-content .dialog-info .dialog-img {
+  width: 40px;
+  height: 40px;
+  position: relative;
+}
+.dialog-content .dialog-info .dialog-img img {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.dialog-content .dialog-info .dialog-img .dialog-name {
+  position: absolute;
+  top: 40px;
+  width: 60px;
+  font-size: 12px;
+  color: #fff9ec;
+}
+.dialog-content .dialog-info .dialog {
+  flex: 1;
+  font-size: 16px;
+  padding-left: 20px;
+  margin-top: 5px;
+}
+.dialog-content .dialog-info .dialog .dialog-text {
+  color: #000;
+  display: inline-block;
+  padding: 8px;
+  background: #fff;
+  border-radius: 10px;
+}

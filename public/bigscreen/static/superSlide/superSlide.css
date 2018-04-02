@@ -1,0 +1,30 @@
+ul, li {
+    list-style: none;
+}
+
+.sl a {
+    text-decoration: none;
+    color: #3985d3;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-size: 16px;
+    font-family: '隶书';
+}
+
+.sl a:hover {
+    color: #1974A1;
+}
+
+.sl {
+    overflow: hidden;
+    position: relative;
+}
+
+.sl .infoList li {
+    height: 35px;
+    line-height: 35px;
+    display: flex;
+    flex-flow: row;
+}

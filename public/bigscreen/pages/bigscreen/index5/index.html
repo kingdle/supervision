@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>督查大屏</title>
+    <link rel="stylesheet" href="../static/css/index.css">
+    <!--layui-->
+    <link rel="stylesheet" href="../../../static/layui/css/layui.css">
+    <link rel="shortcut icon" href="../../../favicon.ico"/>
+    <!-- element-ui -->
+    <link rel="stylesheet" href="../../../static/element-ui/index.css">
+    <!--本页样式-->
+    <link rel="stylesheet" href="style.css">
+</head>
+<body class="sy-row" style="position: relative">
+<div class="title">
+    <a href="javascript:history.go(-1)" style="color: #fff;">重点工作督查指挥平台</a>
+</div>
+<!--模板-->
+<script type="text/html" id="task-tpl">
+    <div class="text-center article-title">
+        <h1>{{d.task.project_name}}</h1>
+    </div>
+    <div class="post-deco"></div>
+    <div class="article">
+        <div class="con con-flow">
+            <small class="text-muted">任务号：</small>
+            <strong>1037</strong>
+            <small class="text-muted">级别：</small>
+            {{d.task.level}}
+        </div>
+        <div class="con con-user">
+            <small class="text-muted">分管领导：</small>
+            <strong>{{d.userMap[d.task.leader_user].USER_NAME}}</strong>
+            <small class="text-muted">责任人：</small>
+            <strong>{{d.userMap[d.task.duty_user].USER_NAME}}</strong>
+            <small class="text-muted">承办人：</small>
+            <strong>{{d.userMap[d.task.owner_user].USER_NAME}}</strong>
+            <small class="text-muted">承办部门：</small>
+            <strong>{{d.getDepName(d.task.dept_id)}}</strong>
+        </div>
+        <div class="con con-time">
+            <small class="text-muted">开始日期：</small>
+            <span>{{layui.util.toDateString(new Date(d.task.begin_date), 'yyyy-MM-dd')}}</span>
+            <small class="text-muted">计划完成日期：</small>
+            <span>{{layui.util.toDateString(new Date(d.task.end_date), 'yyyy-MM-dd')}}</span>
+        </div>
+        <div class="well">
+            <span class="text-muted">最新进展：</span>
+            {{d.task.content||'无'}}
+        </div>
+        <div class="con con-now">
+            <span class="text-muted"><i class="fa fa-clock-o"></i>{{layui.util.toDateString(new Date(d.task.updated_at), 'yyyy-MM-dd')}}</span>更新
+        </div>
+    </div>
+</script>
+<!--图片展示-->
+<script type="text/html" id="images-tpl">
+    <p>现场图片：</p>
+    {{# layui.each(d.list, function(index, item){ }}
+    {{#  if(index<3){ }}
+    <img src="{{item}}" class="feed-photo">
+    {{#  } }}
+    {{# }); }}
+</script>
+<!--任务动态-->
+<script type="text/html" id="flow-tpl">
+    {{# layui.each(d.list, function(index, item){ }}
+    <li class="reply-message">
+        {{# if(item.images&&item.images,length>0){ }}
+        <ul>
+            <div class="reply-user">
+                <a href="javascript:void(0)" class="pic visible-lg">
+                    <img src="{{item.images[0]}}" class="img-circle" width="200">
+                </a>
+            </div>
+        </ul>
+        {{# } }}
+        <div class="reply-con">
+            {{item.content}}<br>
+            <span style="color:#098706">{{item.plan}}</span><br>
+            <span style="color:#abd9ea">{{d.userMap[item.user_id].USER_NAME}}</span>&nbsp;<span
+                style="color:red;">(承办人)</span>
+            {{item.feedback_time}}
+        </div>
+        <div class="reply-img">
+            {{# if(item.images){ }}
+            <ul>
+                {{# layui.each(item.images, function(imgIndex, imgPath){ }}
+                <li><img src="{{imgPath}}" class="feed-photo"></li>
+                {{# }); }}
+            </ul>
+            {{# } }}
+        </div>
+    </li>
+    {{# }); }}
+</script>
+<!--内容-->
+<div class="sy-col-left" style="height:10px;flex:none"></div>
+<div class="sy-col">
+    <div class="sy-col" style="width:10px;flex:none"></div>
+    <!--第一列-->
+    <div class="sy-row">
+        <div class="sy-panel sy-col">
+            <div class="sy-panel-title" style="top: 40px;left: 20px;">任务概述</div>
+            <div class="sy-panel-content">
+                <!--任务概述-->
+                <div class="ibox-content" style="height: 98%;margin: 80px 0 10px 20px;overflow: auto" id="c1"></div>
+            </div>
+        </div>
+        <div class="sy-panel sy-col">
+            <div class="sy-panel-content ">
+                <div class="ibox-content" style="margin-top: 50px;height: 80%;">
+                    <!--现场图片-->
+                    <div class="photos" style="height: 100%;padding-left: 0;padding-right: 0" id="c2"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <!--第二列-->
+    <div class="sy-row">
+        <div class="sy-panel sy-col">
+            <div class="sy-panel-title" style="top: 40px;left: 30px;">任务动态</div>
+            <div class="sy-panel-content" style="position:relative;">
+                <div class="ibox-content" style="position: absolute;top: 80px;left: 20px;right: 0;bottom: -30px;">
+                    <div class="reply">
+                        <!--任务动态-->
+                        <ul class="ul-reply" id="c3"></ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="sy-col" style="width:20px;flex:none"></div>
+</div>
+<div class="sy-col" style="height:5px;flex:none"></div>
+<!--边框图片-->
+<img class="border lt" src="../static/img/border/lt.png">
+<img class="border rb" src="../static/img/border/rb.png">
+<script src="../static/js/jquery.min.js"></script>
+<!--layui-->
+<script src="../../../static/layui/layui.all.js"></script>
+<!--echarts-->
+<script src="../static/js/echarts.min.js"></script>
+<script src="../static/js/echarts-liquidfill.min.js"></script>
+<script src="../static/js/dark.js"></script>
+<!-- 引入组件库 -->
+<script src="../../../static/element-ui/index.js"></script>
+<script src="index.js"></script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en" style="">
+<head>
+    <meta charset="UTF-8">
+    <title>督查大屏</title>
+    <link rel="stylesheet" href="../static/css/index.css">
+    <!--文字滚屏-->
+    <link rel="stylesheet" href="../../../static/superSlide/superSlide.css">
+    <!--layui-->
+    <link rel="stylesheet" href="../../../static/layui/css/layui.css">
+    <link rel="shortcut icon" href="../../../favicon.ico"/>
+
+    <style>
+        .list-title {
+            left: 0 !important;
+            width: 95%;
+            margin: 0;
+            margin-left: 40px;
+            padding: 0;
+            text-align: center !important;
+
+            /*background: none !important;*/
+            font-size: 22px !important;
+        }
+        .sy-panel{
+
+        }
+
+        /*标题颜色*/
+        .color {
+            color: #a8ddc6;
+        }
+
+        .blue {
+            color: #007aff
+        }
+
+        .green {
+            color: #24d477
+        }
+
+        .org {
+            color: #ff9000
+        }
+
+        .red {
+            color: #ed3f3f
+        }
+
+    </style>
+</head>
+<body class="sy-row" style="position: relative">
+<div class="title">
+    <a href="javascript:history.go(-1)" style="color: #fff;">重点工作督查指挥平台</a>
+</div>
+<!--内容-->
+<div class="sy-col" style="height:10px;flex:none"></div>
+<div class="sy-col">
+    <div class="sy-col" style="width:10px;flex:none"></div>
+    <div class="sy-row">
+        <!--项目总览-->
+
+        <!--项目分布-->
+        <div class="sy-panel sy-col" style="flex: 4; margin: 50px 0;">
+            <div class="sy-panel-title list-title" style="padding: 5px;">任务清单</div>
+            <!--滚动内容-->
+            <div class="sy-panel-content" id="c2" style="position: relative;margin-left: 40px;margin-top: 10px;">
+                <!--标题-->
+                <div class="flow-title" style="font-weight: bold;font-size: 16px;text-align: left;color: #52c4ff;">
+                    <div class="flow-layout-width" style="width: 20px"></div>
+                    <div class="flow-layout-width">序号</div>
+                    <div class="flow-layout-flex">项目名称</div>
+                    <div class="flow-layout-flex">项目阶段</div>
+                    <div class="flow-layout-flex">任务名称</div>
+                    <div class="flow-layout-flex">督查事项</div>
+                    <div class="flow-layout-width">状态</div>
+                    <div class="flow-layout-width" style="width: 80px;">剩余时间</div>
+                    <div class="flow-layout-width" style="width: 120px;">最新进展</div>
+                    <div class="flow-layout-width" style="width: 80px;">分管领导</div>
+                    <div class="flow-layout-width">责任人</div>
+                    <div class="flow-layout-width" style="width: 120px;">计划办结时间</div>
+                </div>
+                <!--内容-->
+                <div class="flow-content" style="top:80px;"></div>
+            </div>
+        </div>
+    </div>
+    <div class="sy-col" style="width:20px;flex:none"></div>
+</div>
+<div class="sy-col" style="height:5px;flex:none"></div>
+<!--边框图片-->
+<img class="border lt" src="../static/img/border/lt.png">
+<img class="border rb" src="../static/img/border/rb.png">
+<script src="../static/js/jquery.min.js"></script>
+<!--layui-->
+<script src="../../../static/layui/layui.all.js"></script>
+<!--echarts-->
+<script src="../static/js/echarts.min.js"></script>
+<script src="../static/js/echarts-liquidfill.min.js"></script>
+<script src="../static/js/dark.js"></script>
+<!--滚屏效果-->
+<script src="../../../static/superSlide/superSlide.js"></script>
+<script src="index.js"></script>
+
+<!--循环列表模板 -->
+<script id="news-tpl" type="text/html">
+    <div class="sl">
+        <ul class="infoList">
+            {{# layui.each(d.list, function(index, item){ }}
+            <li data-item="{{item.id}}" class="sy-list {{d.colorMap[item.state]}}">
+                <div class="flow-layout-width" style="width: 10px">
+                    {{# if(item.isStar){ }}
+                    <i class="layui-icon">&#xe600;</i>
+                    {{# } }}
+                </div>
+                <div class="flow-layout-width">
+                    {{index+1}}
+                </div>
+                <div class="flow-layout-flex " title="{{item.proName}}">
+                    <!--{{#  if(item.isStar){ }}-->
+                    <!--<i class="layui-icon">&#xe600;</i>-->
+                    <!--{{#  } }}-->
+                    {{item.proName}}
+                </div>
+                <div class="flow-layout-flex" title="{{item.stage}}">{{item.stage}}</div>
+                <div class="flow-layout-flex" title="{{item.taskName}}">{{item.taskName}}</div>
+                <div class="flow-layout-flex" title="{{item.handlerItems}}">{{item.handlerItems}}</div>
+                <div class="flow-layout-width" title="{{item.state}}">{{item.state}}</div>
+                <div class="flow-layout-width" title="{{item.lastTime}}" style="width: 80px;">
+                    {{item.lastTime}}
+                </div>
+                <div class="flow-layout-width" title="{{item.updateTime}}" style="width: 120px;">
+                    {{item.updateTime}}
+                </div>
+                <div class="flow-layout-width" title="{{item.leader}}" style="width: 80px;">
+                    {{item.leader}}
+                </div>
+                <div class="flow-layout-width" title="{{item.dutyUser}}">{{item.dutyUser}}</div>
+                <div class="flow-layout-width" title="{{item.finishTime}}" style="width: 120px;">
+                    {{item.finishTime}}
+                </div>
+            </li>
+            {{# }); }}
+        </ul>
+    </div>
+</script>
+</body>
+</html>

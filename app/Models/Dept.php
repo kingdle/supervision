@@ -7,7 +7,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class Dept extends Model
 {
-    protected $table = 'pro_department';
+    protected $table = 'department';
     /**
      * 部门
      *
